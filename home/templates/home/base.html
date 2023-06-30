@@ -24,6 +24,7 @@
     />
     <title>Envy</title>
 
+    {%block style%}
     <style>
       body {
         background: #f6f6f6;
@@ -36,6 +37,7 @@
         color: #d6d6d6;
       }
     </style>
+    {%endblock%}
   </head>
   <body class="px-50">
     <!-- Navbar -->
@@ -46,7 +48,7 @@
       <div class="container-fluid">
         <ul class="navbar-nav" data-bs-theme="dark">
           <li class="nav-item">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.html">
               <img
                 src="assets/envy_white.png"
                 width="40"
@@ -62,7 +64,7 @@
             <a class="nav-link" href="#">Categories</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">FAQ</a>
+            <a class="nav-link" href="faq.html">FAQ</a>
           </li>
         </ul>
 
@@ -86,7 +88,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Log In</a>
+            <a class="nav-link" href="signup.html">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Log In</a>
           </li>
         </ul>
       </div>

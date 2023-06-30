@@ -1,0 +1,39 @@
+{% extends "home/base.html" %}
+{% block content%}
+<!--Sign up box-->
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="border rounded-5 p-3 bg-white shadow box-area" style="width: 300px">
+        <div class="col">
+            <h4>Sign Up</h4>
+            <form>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">First Name</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                <div class="mb-3 col">
+                  <label for="exampleInputEmail1" class="form-label">Last Name</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3 col">
+                    <label for="exampleInputEmail1" class="form-label">Address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3 col">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3 col">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3 col">
+                    <label for="exampleInputPassword2" class="form-label">Re-Enter Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword2">
+                </div>
+                <button type="submit" class="btn btn-primary bg-black">Submit</button>
+              </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
