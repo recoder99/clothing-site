@@ -39,6 +39,7 @@
     </style>
     {%endblock%}
   </head>
+  {% load static %}
   <body class="px-50">
     <!-- Navbar -->
     <nav
@@ -48,9 +49,9 @@
       <div class="container-fluid">
         <ul class="navbar-nav" data-bs-theme="dark">
           <li class="nav-item">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="/">
               <img
-                src="assets/envy_white.png"
+                src="{% static 'envy_white.png' %}"
                 width="40"
                 height="40"
                 alt="Envy Logo"
@@ -64,7 +65,7 @@
             <a class="nav-link" href="#">Categories</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="faq.html">FAQ</a>
+            <a class="nav-link" href="/faq">FAQ</a>
           </li>
         </ul>
 
@@ -88,10 +89,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="signup.html">Sign Up</a>
+            <a class="nav-link" href="/signup">Sign Up</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.html">Log In</a>
+            <a class="nav-link" href="/login">Log In</a>
           </li>
         </ul>
       </div>

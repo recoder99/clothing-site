@@ -1,4 +1,5 @@
 {% extends "home/base.html" %} {% block content%}
+{% load static %}
 <div>
   <!--Log in box-->
   <div
@@ -6,7 +7,7 @@
   >
     <div class="row border rounded-5 p-3 bg-white shadow box-area">
       <div class="col md-6">
-        <image src="../assets/login_media.jpg" style="width: 310px"></image>
+        <image src="{% static 'login_media.jpg' %}" style="width: 310px"></image>
       </div>
       <div class="col md-6">
         <h4>Log In</h4>
