@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import signup_form
 from django.contrib.auth.forms import UserCreationForm
+from .forms import pi_form
+from django.contrib import redirects
 
 # Create your views here.
 def homepage(request):
@@ -23,6 +25,7 @@ def signup(request):
         if form.is_valid():
             print("test_point_2")
             form.save()
+            
     
     context = {}
 
