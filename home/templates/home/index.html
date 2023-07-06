@@ -42,128 +42,22 @@
     <div class="col col-12 bg-black text-white">
       <p class="h2">Hot Products</p>
     </div>
+    {% for p in products %}
     <div class="col">
       <a class="nav-link" href="#">
         <div class="card">
-          <img src="{% static 'items/plain_white.jpg' %}" class="card-img-top" alt="..." />
+          <img src="{{p.product_image.url}}" class="card-img-top" alt="..." />
           <div class="card-body">
-            <h5 class="card-title text-center">Plain White Tshirt</h5>
+            <h5 class="card-title text-center">{{p.product_name}}</h5>
             <div class="row justify-content-evenly">
-              <p class="card-text">₱420</p>
+              <p class="card-text">{{p.price}}</p>
               <p class="card-text text-secondary">69.9k Sold</p>
             </div>
           </div>
         </div>
       </a>
     </div>
-    <div class="col">
-      <a class="nav-link" href="#">
-        <div class="card">
-          <img
-            src="{% static 'items/black_skeleton_peace.jpg' %}"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col">
-      <a class="nav-link" href="#">
-        <div class="card">
-          <img src="{% static 'items/red_dress.jpg' %}" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col">
-      <a class="nav-link" href="#">
-        <div class="card">
-          <img src="{% static 'items/plain_white.jpg' %}" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col">
-      <a class="nav-link" href="#">
-        <div class="card">
-          <img src="{% static 'items/plain_white.jpg' %}" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col">
-      <a class="nav-link" href="#">
-        <div class="card">
-          <img src="{% static 'items/plain_white.jpg' %}" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col">
-      <a class="nav-link" href="#">
-        <div class="card">
-          <img src="{% static 'items/plain_white.jpg' %}" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col">
-      <a class="nav-link" href="#">
-        <div class="card">
-          <img src="{% static 'items/plain_white.jpg' %}" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col">
-      <a class="nav-link" href="#">
-        <div class="card">
-          <img src="{% static 'items/plain_white.jpg' %}" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}
