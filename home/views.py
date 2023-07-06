@@ -16,10 +16,12 @@ def login(request):
 def signup(request):
     
     form = UserCreationForm()
-
+    print("test_point_0")
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
+        print("test_point_1")
         if form.is_valid():
+            print("test_point_2")
             form.save()
     
     context = {}

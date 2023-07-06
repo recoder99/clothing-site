@@ -5,7 +5,7 @@
     <div class="border rounded-5 p-3 bg-white shadow box-area" style="width: 300px">
         <div class="col">
             <h4>Sign Up</h4>
-            <form action="">
+            <form action="{% url 'signup' %}" method='post'>
                 <!-- <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">First Name</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -35,8 +35,8 @@
                   {% csrf_token %}
                   {{form.as_p}}
                   {{form.error}}
+                  <input type="submit" name="Create User">
                 </fieldset>
-                <input type="submit" name="Create User">
               </form>
         </div>
     </div>
