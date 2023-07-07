@@ -6,37 +6,38 @@
         <div class="col">
             <h4>Sign Up</h4>
             <form action="{% url 'signup' %}" method='post'>
-                <!-- <div class="mb-3">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Username</label>
+                  <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">First Name</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  </div>
-                <div class="mb-3 col">
-                  <label for="exampleInputEmail1" class="form-label">Last Name</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input name="first_name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3 col">
-                    <label for="exampleInputEmail1" class="form-label">Address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <label for="exampleInputEmail1" class="form-label">Last Name</label>
+                  <input name="last_name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3 col">
                   <label for="exampleInputEmail1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3 col">
                   <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
+                  <input name="password1" type="password" class="form-control" id="exampleInputPassword1">
                 </div>
                 <div class="mb-3 col">
                     <label for="exampleInputPassword2" class="form-label">Re-Enter Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword2">
+                    <input name="password2" type="password" class="form-control" id="exampleInputPassword2">
                 </div>
-                <button type="submit" class="btn btn-primary bg-black">Submit</button> -->
-                <fieldset>
-                  {% csrf_token %}
+                <button type="submit" class="btn btn-primary bg-black">Submit</button>
+                {% comment %} <fieldset>
+                  
                   {{form.as_p}}
                   {{form.error}}
                   <input type="submit" name="Create User">
-                </fieldset>
+                </fieldset> {% endcomment %}
               </form>
         </div>
     </div>
