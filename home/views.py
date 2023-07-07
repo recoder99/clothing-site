@@ -3,11 +3,14 @@ from django.http import HttpResponse
 from .forms import signup_form
 from django.contrib.auth.forms import UserCreationForm
 from .forms import pi_form
+from .models import *
 from django.contrib import redirects
 
 # Create your views here.
 def homepage(request):
-    return render(request, "home/index.html")
+    
+    products = Product.objects.all()
+    return render(request, "home/index.html", {'products': products})
 
 def faq(request):
     return render(request, "home/faq.html")
