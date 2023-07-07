@@ -32,15 +32,6 @@ def signup(request):
         if form.is_valid():
             print("test_point_2")
             form.save()
-<<<<<<< HEAD
-
-    context = {}
-    context['form'] =  form
-    return render(request, "home/signup.html", context)
-
-def product_page(request, product_id):
-    return HttpResponse("products id: " + str(product_id))
-=======
 
     context = {}
 
@@ -51,4 +42,3 @@ def product_page(request, product_id):
 def product_page(request):
     product = Product.objects.get(product_name="Black Skeleton")
     return render(request, "home/product_page.html", {"product": product})
->>>>>>> origin/crispy_form
