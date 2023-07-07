@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpRequest
 from django.http import HttpResponse
 from .forms import signup_form
 from django.contrib.auth.forms import UserCreationForm
@@ -28,9 +29,10 @@ def signup(request):
         if form.is_valid():
             print("test_point_2")
             form.save()
-            
-    
-    context = {}
 
+    context = {}
     context['form'] =  form
     return render(request, "home/signup.html", context)
+
+def product_page(request, product_id):
+    return HttpResponse("products id: " + str(product_id))
