@@ -48,7 +48,7 @@
     </div>
     {% for p in products %}
     <div class="col">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="product/{{p.id}}">
         <div class="card">
           <img src="{{p.product_image.url}}" class="card-img-top" alt="..." />
           <div class="card-body">

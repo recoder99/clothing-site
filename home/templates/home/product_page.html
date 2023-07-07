@@ -13,12 +13,12 @@
       <div class="col-6 md-4 mt-2">
         <h1 class="">{{product.product_name}}</h1>
         <div class="d-flex justify-content-around position-relative">
-          <h6 class="position-absolute start-0">₱{{product.price}}</h6>
-          <h6>69.k Sold</h6>
+          <h4 class="position-absolute start-0">₱{{product.price}}</h4>
+          <h4>69.k Sold</h4>
         </div>
 
         <div class="row row-cols-lg-auto g-3 align-items-center mt-5">
-          <p class="col-12">Tags: {{product.description}}</p>
+          <p class="col-12">Tags: clothes, stuff, yeah, right</p>
         </div>
 
         <div class="row row-cols-lg-auto g-3 align-items-center mt-5">
@@ -49,7 +49,7 @@
       </div>
       <!--Description-->
       <div class="col-12 md-4">
-        <p>{{product.description}}</p>
+        <p>{{product.description | linebreaks}}</p>
       </div>
     </div>
   </div>

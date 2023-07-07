@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import pi_form
 from .models import *
 from django.contrib import redirects
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def homepage(request):
@@ -39,6 +40,6 @@ def signup(request):
     return render(request, "home/signup.html", context)
 
 
-def product_page(request):
-    product = Product.objects.get(product_name="Black Skeleton")
+def product_page(request, id):
+    product = get_object_or_404(Product, id = id)
     return render(request, "home/product_page.html", {"product": product})
