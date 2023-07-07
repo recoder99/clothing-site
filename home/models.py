@@ -18,7 +18,7 @@ class Category(models.Model):
 class Product(models.Model):
     product_name = models.CharField(max_length=600)
     product_image = models.ImageField(upload_to='items/', default='static/items/red_dress.jpg')
-    description = models.CharField(max_length=69000)
+    description = models.TextField()
     price = models.FloatField()
 
     def __str__(self):
