@@ -1,0 +1,57 @@
+{% extends "home/base.html" %} {% block content%} {%load static%}
+<div
+  class="bg-white mx-auto position-relative"
+  style="width: 1200px; height: 5000"
+>
+  <div class="container" style="width: 1000px">
+    <div class="row">
+      <!--Product Image-->
+      <div class="col-4 md-4 mt-2">
+        <image src="{{product.product_image.url}}" style="width: 310px"></image>
+      </div>
+      <!--Product Detail-->
+      <div class="col-6 md-4 mt-2">
+        <h1 class="">{{product.product_name}}</h1>
+        <div class="d-flex justify-content-around position-relative">
+          <h6 class="position-absolute start-0">₱{{product.price}}</h6>
+          <h6>69.k Sold</h6>
+        </div>
+
+        <div class="row row-cols-lg-auto g-3 align-items-center mt-5">
+          <p class="col-12">Tags: {{product.description}}</p>
+        </div>
+
+        <div class="row row-cols-lg-auto g-3 align-items-center mt-5">
+          <p class="col-12">Quantity:</p>
+          <button
+            type="button"
+            class="col-12 btn btn-outline-dark btn-sm mb-2"
+            style="padding-top: 1px; padding-bottom: 1px"
+          >
+            -
+          </button>
+          <p class="col-12">1</p>
+          <button
+            type="button"
+            class="col-12 btn btn-outline-dark btn-sm mb-2"
+            style="padding: 1px 7px"
+          >
+            +
+          </button>
+        </div>
+
+        <div class="row row-cols-lg-auto g-3 align-items-center mt-2">
+          <button type="button" class="btn btn-dark btn-lg me-2">
+            Add to Cart
+          </button>
+          <button type="button" class="btn btn-dark btn-lg">Buy Now</button>
+        </div>
+      </div>
+      <!--Description-->
+      <div class="col-12 md-4">
+        <p>{{product.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
