@@ -1,5 +1,10 @@
 {% extends "home/base.html" %}
+
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
 {% block content%}
+
 <!--Sign up box-->
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="border rounded-5 p-3 bg-white shadow box-area" style="width: 300px">
@@ -33,9 +38,9 @@
                 <button type="submit" class="btn btn-primary bg-black">Submit</button> -->
                 <fieldset>
                   {% csrf_token %}
-                  {{form.as_p}}
+                  {{form | crispy}}
                   {{form.error}}
-                  <input type="submit" name="Create User">
+                  <input class="btn btn-dark"type="submit" name="Create User">
                 </fieldset>
               </form>
         </div>
