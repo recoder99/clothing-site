@@ -1,4 +1,7 @@
-{% extends "home/base.html" %} {% block content%} {%load static%}
+{% extends "home/base.html" %} {%block script%} {%load static%}
+<script src="{% static 'quantityChange.js' %}"></script>
+
+{%endblock%} {% block content%}
 <div
   class="bg-white mx-auto position-relative"
   style="width: 1200px; height: 5000"
@@ -27,14 +30,22 @@
             type="button"
             class="col-12 btn btn-outline-dark btn-sm mb-2"
             style="padding-top: 1px; padding-bottom: 1px"
+            onclick="decrementButton()"
           >
             -
           </button>
-          <p class="col-12">1</p>
+          <input
+            type="text"
+            class="mb-2 mx-2"
+            id="quantity"
+            value="1"
+            style="width: 30px"
+          />
           <button
             type="button"
             class="col-12 btn btn-outline-dark btn-sm mb-2"
             style="padding: 1px 7px"
+            onclick="incrementButton()"
           >
             +
           </button>
