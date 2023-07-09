@@ -24,46 +24,56 @@ def faq(request):
 
 def login_user(request):
 
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
 
         user = authenticate(request, username=username, password=password)
         if User is not None:
             if user.is_active:
-                request.session.set_expiry(86400) #sets the exp. value of the session 
+                request.session.set_expiry(86400)  # sets the exp. value of the session
                 login(request, user)
-                return redirect('/')
+                return redirect("/")
 
     return render(request, "home/login.html")
+
 
 def logout_user(request):
     if request.user.is_authenticated:
         logout(request)
-    return redirect('/')
+    return redirect("/")
 
 
 def signup(request):
 
     if request.method == "POST":
-        username = request.POST['username']
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        email = request.POST['email']
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
+        username = request.POST["username"]
+        first_name = request.POST["first_name"]
+        last_name = request.POST["last_name"]
+        email = request.POST["email"]
+        password1 = request.POST["password1"]
+        password2 = request.POST["password2"]
         if password1 != password2:
             return HttpResponse("password does not match")
-        
+
         user = User.objects.create_user(username, email, password1)
         user.first_name = first_name
         user.last_name = last_name
         user.save()
         return redirect("/login")
-    
+
     return render(request, "home/signup.html")
 
 
 def product_page(request, id):
-    product = get_object_or_404(Product, id = id)
+    product = get_object_or_404(Product, id=id)
     return render(request, "home/product_page.html", {"product": product})
+
+
+def cart(request):
+    products = Product.objects.all()
+    total = 0
+
+    for price in products:
+        total += price.price
+    return render(request, "home/cart.html", {"products": products, "total": total})
