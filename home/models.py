@@ -35,7 +35,12 @@ class Orders(models.Model):
         return self.product_id
 
 
-class Cart:
+class Cart(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    ordered = models.BooleanField()
+    quantity = models.IntegerField()
+    ordered = models.BooleanField(default=False)
+
+    def __str__(self):
+        return '{0} {1} {2}'.format(self.user_id, self.product_id, self.quantity)
+

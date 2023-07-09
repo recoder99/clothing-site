@@ -10,6 +10,7 @@ from .forms import pi_form
 from .models import *
 from django.contrib import redirects
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def homepage(request):
@@ -67,3 +68,18 @@ def signup(request):
 def product_page(request, id):
     product = get_object_or_404(Product, id = id)
     return render(request, "home/product_page.html", {"product": product})
+
+@login_required(login_url='login')
+def add_to_cart(request):
+    print("testpoint1")
+    if request.method == "POST":
+        product_id = request.POST['product_id']
+        quantity = int(request.POST['quantity'])
+        print(product_id, quantity)
+
+        product = Product.objects.get(pk=product_id)
+        cart_item = Cart.objects.create(user_id=request.user, product_id=product, quantity=quantity, ordered=False)
+        print(product)
+        cart_item.save()
+    return HttpResponse('')
+        

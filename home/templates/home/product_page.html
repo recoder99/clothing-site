@@ -15,6 +15,8 @@
       <!--Product Detail-->
       <div class="col-6 md-4 mt-2">
         <h1 class="">{{product.product_name}}</h1>
+        <p hidden id="product_id">{{product.id}}</p>
+        <input hidden name="product_id" value="{{product.id}}"/>
         <div class="d-flex justify-content-around position-relative">
           <h4 class="position-absolute start-0">₱{{product.price}}</h4>
           <h4>69.k Sold</h4>
@@ -36,6 +38,7 @@
           </button>
           <input
             type="text"
+            name="quantity_input"
             class="mb-2 mx-2"
             id="quantity"
             value="1"
@@ -52,11 +55,31 @@
         </div>
 
         <div class="row row-cols-lg-auto g-3 align-items-center mt-2">
-          <button type="button" class="btn btn-dark btn-lg me-2">
+          {% csrf_token %}
+          <button id='add_to_cart' type="button" class="btn btn-dark btn-lg me-2">
             Add to Cart
           </button>
           <button type="button" class="btn btn-dark btn-lg">Buy Now</button>
         </div>
+        <script>
+          var main = function(){
+            $('#add_to_cart').click(function(){
+              alert("clicked");
+              var CSRFtoken = $('input[name=csrfmiddlewaretoken]').val();
+              var product = $('input[name=product_id]').val();
+              var data = $('input[name=quantity_input]').val();
+              alert("processed " + product + data);
+              $.post('/add_to_cart', {
+                product_id: product,
+                quantity: data,
+                csrfmiddlewaretoken: CSRFtoken,
+              });
+              alert("product added to cart");
+            });
+          };
+
+          $(document).ready(main);
+        </script>
       </div>
       <!--Description-->
       <div class="col-12 md-4">
