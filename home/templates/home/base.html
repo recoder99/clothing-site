@@ -28,7 +28,6 @@
     </script> 
     <title>Envy</title>
 
-    {%block style%}
     <style>
       body {
         background: #f6f6f6;
@@ -40,8 +39,19 @@
       .nav-link:hover {
         color: #d6d6d6;
       }
+
+      .product-image{
+        width:260px;
+        height:390px;
+        overflow:hidden;
+    }
+
+    .cart-img{
+      width:140px;
+      height:200px;
+      overflow:hidden;
+    }
     </style>
-    {%endblock%}
   </head>
   <body class="px-50">
     <!-- Navbar -->
@@ -84,7 +94,7 @@
             </form>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/cart">
               <i
                 class="fa-solid fa-lg fa-cart-shopping"
                 style="color: #ffffff"

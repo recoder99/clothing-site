@@ -1,0 +1,76 @@
+{% extends "home/base.html" %} {%block script%} {%load static%}
+<script src="{% static 'quantityChange.js' %}"></script>
+
+{%endblock%} {% block content%}
+<div
+  class="bg-white mx-auto position-relative"
+  style="width: 1200px; height: 5000"
+>
+  <div class="container" style="width: 1000px">
+    {%for p in products%}
+    <div class="row border mb-3">
+      <!--Image-->
+      <div class="col-2">
+        <image class="cart-img" src="{{p.product_image.url}}"></image>
+      </div>
+      <!--Detail-->
+      <div class="col-10">
+        <h1 class="">{{p.product_name}}</h1>
+        <div class="">
+          <h4 class="">₱{{p.price}}</h4>
+        </div>
+
+        <div class="row row-cols-lg-auto g-3 align-items-center mt-5">
+          <p class="col-12">Quantity:</p>
+          <button
+            type="button"
+            class="col-12 btn btn-outline-dark btn-sm mb-2"
+            style="padding-top: 1px; padding-bottom: 1px"
+            onclick="decrementButton()"
+          >
+            -
+          </button>
+          <input
+            type="text"
+            class="mb-2 mx-2"
+            id="quantity"
+            value="1"
+            style="width: 30px"
+          />
+          <button
+            type="button"
+            class="col-12 btn btn-outline-dark btn-sm mb-2"
+            style="padding: 1px 7px"
+            onclick="incrementButton()"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+
+    <!--Buy out nav-->
+    <nav
+      class="navbar navbar-expand-md bg-black fixed-bottom"
+      data-bs-theme="dark"
+      style="margin: 0px 200px"
+    >
+      <div class="container-fluid">
+        <ul class="navbar-nav" data-bs-theme="dark">
+          <li class="nav-item">
+            <h6 class="navbar-text" style="color: white">Total: ₱{{total}}</h6>
+          </li>
+        </ul>
+        <ul class="navbar-nav d-flex">
+          <li>
+            <form class="d-flex">
+              <button class="btn btn-outline-light" type="submit">Check Out</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+{% endblock %}
