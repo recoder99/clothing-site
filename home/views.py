@@ -86,9 +86,27 @@ def add_to_cart(request):
         
 @login_required
 def cart(request):
-    products = Product.objects.all()
+    products = Cart.objects.filter(user_id=request.user, ordered=False)
     total = 0
 
     for price in products:
-        total += price.price
+        total +=  price.product_id.price * price.quantity
     return render(request, "home/cart.html", {"products": products, "total": total})
+
+@login_required
+def update_cart(request):
+    if request.method == 'POST':
+        print("debug1")
+        str = request.POST['data']
+        data = str.split("_")
+        print(data)
+        p_id = int(data[1])
+        cart_item = Cart.objects.get(pk=p_id)
+        if data[0] == 'inc':
+            print("debug2")
+            cart_item.quantity += 1
+            cart_item.save()
+        elif data[0] == 'dec':
+            cart_item.quantity -= 1
+            cart_item.save()
+    return HttpResponse('')
