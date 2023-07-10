@@ -70,43 +70,52 @@ def product_page(request, id):
     product = get_object_or_404(Product, id=id)
     return render(request, "home/product_page.html", {"product": product})
 
-@login_required(login_url='login')
+
+@login_required(login_url="login")
 def add_to_cart(request):
     print("testpoint1")
     if request.method == "POST":
-        product_id = request.POST['product_id']
-        quantity = int(request.POST['quantity'])
+        product_id = request.POST["product_id"]
+        quantity = int(request.POST["quantity"])
         print(product_id, quantity)
 
         product = Product.objects.get(pk=product_id)
-        cart_item = Cart.objects.create(user_id=request.user, product_id=product, quantity=quantity, ordered=False)
+        cart_item = Cart.objects.create(
+            user_id=request.user, product_id=product, quantity=quantity, ordered=False
+        )
         print(product)
         cart_item.save()
-    return HttpResponse('')
-        
+    return HttpResponse("")
+
+
 @login_required
 def cart(request):
     products = Cart.objects.filter(user_id=request.user, ordered=False)
     total = 0
 
     for price in products:
-        total +=  price.product_id.price * price.quantity
+        total += price.product_id.price * price.quantity
     return render(request, "home/cart.html", {"products": products, "total": total})
+
 
 @login_required
 def update_cart(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         print("debug1")
-        str = request.POST['data']
+        str = request.POST["data"]
         data = str.split("_")
         print(data)
         p_id = int(data[1])
         cart_item = Cart.objects.get(pk=p_id)
-        if data[0] == 'inc':
+        if data[0] == "inc":
             print("debug2")
             cart_item.quantity += 1
             cart_item.save()
-        elif data[0] == 'dec':
+        elif data[0] == "dec":
             cart_item.quantity -= 1
             cart_item.save()
-    return HttpResponse('')
+    return HttpResponse("")
+
+
+def information(request):
+    return render(request, "home/information.html")
