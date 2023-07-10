@@ -119,3 +119,6 @@ def update_cart(request):
 
 def information(request):
     return render(request, "home/information.html")
+
+def edit_information(request):
+    return render(request, "home/edit_information.html")
