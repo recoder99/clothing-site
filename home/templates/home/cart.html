@@ -7,15 +7,17 @@
   style="width: 1200px; height: 5000"
 >
   <div class="container" style="width: 1000px">
-    {% csrf_token %}
-    {%for p in products%}
+    {% csrf_token %} {%for p in products%}
     <div class="row border mb-3">
       <!--Image-->
       <div class="col-2">
-        <image class="cart-img" src="{{p.product_id.product_image.url}}"></image>
+        <image
+          class="cart-img"
+          src="{{p.product_id.product_image.url}}"
+        ></image>
       </div>
       <!--Detail-->
-      <div class="col-10">
+      <div class="col-9">
         <h1 class="">{{p.product_id.product_name}}</h1>
         <div class="">
           <h4 class="">₱{{p.product_id.price}}</h4>
@@ -49,6 +51,15 @@
           </button>
         </div>
       </div>
+      <div class="col-1">
+        <button
+          type="button"
+          class="btn btn-link link-underline link-underline-opacity-0 text-dark"
+          style="margin: 70px 0 0 0"
+        >
+          <h4>X</h4>
+        </button>
+      </div>
     </div>
     {%endfor%}
 
@@ -67,7 +78,9 @@
         <ul class="navbar-nav d-flex">
           <li>
             <form class="d-flex">
-              <button class="btn btn-outline-light" type="submit">Check Out</button>
+              <button class="btn btn-outline-light" type="submit">
+                Check Out
+              </button>
             </form>
           </li>
         </ul>
@@ -75,16 +88,20 @@
     </nav>
   </div>
   <script>
-    var main = $('.quantity-button').click(function(){
-      var CSRFtoken = $('input[name=csrfmiddlewaretoken]').val();
-      var data = $(this).attr('id');
-      
-      $.post('/update_cart',{
-        data: data,
-        csrfmiddlewaretoken: CSRFtoken,
-      }, function(){
-        location.reload()
-      });
+    var main = $(".quantity-button").click(function () {
+      var CSRFtoken = $("input[name=csrfmiddlewaretoken]").val();
+      var data = $(this).attr("id");
+
+      $.post(
+        "/update_cart",
+        {
+          data: data,
+          csrfmiddlewaretoken: CSRFtoken,
+        },
+        function () {
+          location.reload();
+        }
+      );
     });
     $(document).ready(main);
   </script>
