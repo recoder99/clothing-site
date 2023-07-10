@@ -9,22 +9,22 @@
       <div class="col-3">
         <h1>Cart List</h1>
         <div class="row overflow-scroll border" style="height: 500px">
-          {%for p in products%}
+          {%for c in cart%}
           <div class="row border mb-1 g-0">
             <!--Image-->
             <div class="col-md-4">
               <image
                 class="cart-img"
-                src="{{p.product_id.product_image.url}}"
+                src="{{c.product_id.product_image.url}}"
               ></image>
             </div>
             <!--Detail-->
             <div class="col-md-8 mt-2">
-              <h6 class="h6">{{p.product_id.product_name}}</h6>
+              <h6 class="h6">{{c.product_id.product_name}}</h6>
               <div class="">
-                <p class="">₱{{p.product_id.price}}</p>
+                <p class="">₱{{c.product_id.price}}</p>
               </div>
-              <p>{{cart_item.quantity}}</p>
+              <p>x{{c.quantity}}</p>
             </div>
           </div>
           {%endfor%}
@@ -82,7 +82,51 @@
           />
           <label class="form-check-label" for="crypt"> Crypto Currency </label>
         </div>
-        <button type="button" class="btn btn-dark mt-5">Confirm Order</button>
+        <button
+          type="button"
+          class="btn btn-dark mt-5"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Confirm Order
+        </button>
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <!--Modal-->
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Mode of Payment Details
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">...</div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary">
+                  Save changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

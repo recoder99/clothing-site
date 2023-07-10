@@ -70,53 +70,63 @@ def product_page(request, id):
     product = get_object_or_404(Product, id=id)
     return render(request, "home/product_page.html", {"product": product})
 
-@login_required(login_url='login')
+
+@login_required(login_url="login")
 def add_to_cart(request):
     print("testpoint1")
     if request.method == "POST":
-        product_id = request.POST['product_id']
-        quantity = int(request.POST['quantity'])
+        product_id = request.POST["product_id"]
+        quantity = int(request.POST["quantity"])
         print(product_id, quantity)
 
         product = Product.objects.get(pk=product_id)
-        cart_item = Cart.objects.create(user_id=request.user, product_id=product, quantity=quantity, ordered=False)
+        cart_item = Cart.objects.create(
+            user_id=request.user, product_id=product, quantity=quantity, ordered=False
+        )
         print(product)
         cart_item.save()
-    return HttpResponse('')
-        
+    return HttpResponse("")
+
+
 @login_required
 def cart(request):
     products = Cart.objects.filter(user_id=request.user, ordered=False)
     total = 0
 
     for price in products:
-        total +=  price.product_id.price * price.quantity
+        total += price.product_id.price * price.quantity
     return render(request, "home/cart.html", {"products": products, "total": total})
+
 
 @login_required
 def update_cart(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         print("debug1")
-        str = request.POST['data']
+        str = request.POST["data"]
         data = str.split("_")
         print(data)
         p_id = int(data[1])
         cart_item = Cart.objects.get(pk=p_id)
-        if data[0] == 'inc':
+        if data[0] == "inc":
             print("debug2")
             cart_item.quantity += 1
             cart_item.save()
-        elif data[0] == 'dec':
+        elif data[0] == "dec":
             cart_item.quantity -= 1
             cart_item.save()
-        elif data[0] == 'rm':
+        elif data[0] == "rm":
             cart_item.delete()
     return HttpResponse("")
 
 
 @login_required
 def information(request):
-    return render(request, "home/information.html", {'info': PersonalInformation.objects.get(user_id=request.user)})
+    return render(
+        request,
+        "home/information.html",
+        {"info": PersonalInformation.objects.get(user_id=request.user)},
+    )
+
 
 def edit_information(request):
 
@@ -129,11 +139,11 @@ def edit_information(request):
         city = request.POST["city"]
         province = request.POST["province"]
         zipcode = request.POST["zipcode"]
-        
+
         contact_no = request.POST["contact_no"]
-        
+
         user = User.objects.get(id=request.user.id)
-        user_info = PersonalInformation.objects.get(user_id = request.user)
+        user_info = PersonalInformation.objects.get(user_id=request.user)
 
         user_info.address_1 = address_1
         user_info.city = city
@@ -148,24 +158,29 @@ def edit_information(request):
         user.email = email
         user.save()
 
-    return render(request, "home/edit_information.html", {'info': PersonalInformation.objects.get(user_id=request.user)})
+    return render(
+        request,
+        "home/edit_information.html",
+        {"info": PersonalInformation.objects.get(user_id=request.user)},
+    )
+
 
 @login_required
 def checkout(request):
+    cart_items = Cart.objects.filter(user_id=request.user)
 
-    if request.method == 'POST':
-        cart_items = Cart.objects.filter(user_id=request.user)
-        address = "{0}, {1}, {2}, {3}".format(user_info.address_1, user_info.city, user_info.province, user_info.zipcode)
+    if request.method == "POST":
+
+        address = "{0}, {1}, {2}, {3}".format(
+            user_info.address_1, user_info.city, user_info.province, user_info.zipcode
+        )
         order = Orders.objects.create(request.user, False, address)
-        data = request.POST['pay_method']
+        data = request.POST["pay_method"]
         user_info = PersonalInformation.objects.get(user_id=request.user)
         for i in cart_items:
             OrderDetails.objects.create(order, i.product_id, data, i.quantity)
             i.ordered = True
 
         cart_items.filter(ordered=True).delete()
-    
-    return render(request, "home/checkout.html")
 
-        
-        
+    return render(request, "home/checkout.html", {"cart": cart_items})
