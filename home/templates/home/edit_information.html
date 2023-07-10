@@ -8,7 +8,7 @@
             <form>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">First Name</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" value="Rudeus">
+                  <input type="text" class="form-control" id="exampleInputEmail1" value="{{request.user.first_name}}">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Last Name</label>
@@ -28,6 +28,10 @@
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Zip Code</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" value="idea">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Contact #</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" value="idea">
                 </div>
                 <button type="submit" class="btn btn-primary btn-dark">Confirm</button>
