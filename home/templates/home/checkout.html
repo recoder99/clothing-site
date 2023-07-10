@@ -1,0 +1,90 @@
+{% extends "home/base.html" %}{%load static%} {%block content%}
+<div
+  class="bg-white mx-auto position-relative"
+  style="width: 1200px; height: 5000"
+>
+  <div class="container">
+    <div class="row">
+      <!--Cart List-->
+      <div class="col-3">
+        <h1>Cart List</h1>
+        <div class="row overflow-scroll border" style="height: 500px">
+          {%for p in products%}
+          <div class="row border mb-1 g-0">
+            <!--Image-->
+            <div class="col-md-4">
+              <image
+                class="cart-img"
+                src="{{p.product_id.product_image.url}}"
+              ></image>
+            </div>
+            <!--Detail-->
+            <div class="col-md-8 mt-2">
+              <h6 class="h6">{{p.product_id.product_name}}</h6>
+              <div class="">
+                <p class="">₱{{p.product_id.price}}</p>
+              </div>
+              <p>{{cart_item.quantity}}</p>
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+
+        <!--Checkout Information-->
+      </div>
+      <div class="col">
+        <h1>Order #6940</h1>
+        <div class="row">
+          <p class="col-6">Recepient:</p>
+          <p class="col-6">Yamashita Dela Cruz</p>
+          <p class="col-6">Delivery Address:</p>
+          <p class="col-6">
+            Brgy. 69 Ermita St. Tondo, Manila, Metro Manila, 3020, Philippines
+          </p>
+          <p class="col-6">Contact #:</p>
+          <p class="col-6">09876543210</p>
+        </div>
+        <h3>Mode of Payment</h3>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="pay_method"
+            id="cod"
+            checked
+          />
+          <label class="form-check-label" for="cod"> Cash on Delivery </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="pay_method"
+            id="mob"
+          />
+          <label class="form-check-label" for="mob"> Mobile Payment </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="pay_method"
+            id="ccv"
+          />
+          <label class="form-check-label" for="ccv"> Credit/Debit Card </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="pay_method"
+            id="crypt"
+          />
+          <label class="form-check-label" for="crypt"> Crypto Currency </label>
+        </div>
+        <button type="button" class="btn btn-dark mt-5">Confirm Order</button>
+      </div>
+    </div>
+  </div>
+  {%endblock%}
+</div>
