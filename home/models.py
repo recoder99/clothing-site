@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class PersonalInformation(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_lenght=100)
+    last_name = models.CharField(max_length=100)
     ContactNumber = models.IntegerField()
 
     def __str__(self):
@@ -18,7 +18,7 @@ class Address(models.Model):
     address_1 = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
     province = models.CharField(max_length=100)
-    zipcode = models.models.IntegerField()
+    zipcode = models.IntegerField()
 
     def __str__(self):
         return self.province
