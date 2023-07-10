@@ -6,23 +6,15 @@ from django.contrib.auth.models import User
 
 class PersonalInformation(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    ContactNumber = models.IntegerField()
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    address_1 = models.CharField(max_length=200, blank=True)
+    city = models.CharField(max_length=100, blank=True)
+    province = models.CharField(max_length=100, blank=True)
+    zipcode = models.IntegerField(blank=True)
+    ContactNumber = models.IntegerField(default=0, blank=True)
 
     def __str__(self):
         return '{0} {1}'.format(self.first_name, self.last_name)
-
-class Address(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    address_1 = models.CharField(max_length=200)
-    city = models.CharField(max_length=100)
-    province = models.CharField(max_length=100)
-    zipcode = models.IntegerField()
-
-    def __str__(self):
-        return self.province
-
 
 class Product(models.Model):
     product_name = models.CharField(max_length=600)
