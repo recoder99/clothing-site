@@ -157,8 +157,4 @@ def user_update(request):
         user.last_name = last_name
         user.email = email
         user.save()
-
-
-        elif data[0] == 'rm':
-            cart_item.delete()
     return HttpResponse('')
