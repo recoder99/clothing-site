@@ -69,46 +69,51 @@ def product_page(request, id):
     product = get_object_or_404(Product, id=id)
     return render(request, "home/product_page.html", {"product": product})
 
-@login_required(login_url='login')
+
+@login_required(login_url="login")
 def add_to_cart(request):
     print("testpoint1")
     if request.method == "POST":
-        product_id = request.POST['product_id']
-        quantity = int(request.POST['quantity'])
+        product_id = request.POST["product_id"]
+        quantity = int(request.POST["quantity"])
         print(product_id, quantity)
 
         product = Product.objects.get(pk=product_id)
-        cart_item = Cart.objects.create(user_id=request.user, product_id=product, quantity=quantity, ordered=False)
+        cart_item = Cart.objects.create(
+            user_id=request.user, product_id=product, quantity=quantity, ordered=False
+        )
         print(product)
         cart_item.save()
-    return HttpResponse('')
-        
+    return HttpResponse("")
+
+
 @login_required
 def cart(request):
     products = Cart.objects.filter(user_id=request.user, ordered=False)
     total = 0
 
     for price in products:
-        total +=  price.product_id.price * price.quantity
+        total += price.product_id.price * price.quantity
     return render(request, "home/cart.html", {"products": products, "total": total})
+
 
 @login_required
 def update_cart(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         print("debug1")
-        str = request.POST['data']
+        str = request.POST["data"]
         data = str.split("_")
         print(data)
         p_id = int(data[1])
         cart_item = Cart.objects.get(pk=p_id)
-        if data[0] == 'inc':
+        if data[0] == "inc":
             print("debug2")
             cart_item.quantity += 1
             cart_item.save()
-        elif data[0] == 'dec':
+        elif data[0] == "dec":
             cart_item.quantity -= 1
             cart_item.save()
-        elif data[0] == 'rm':
+        elif data[0] == "rm":
             cart_item.delete()
     return HttpResponse("")
 
@@ -116,8 +121,10 @@ def update_cart(request):
 def information(request):
     return render(request, "home/information.html")
 
+
 def edit_information(request):
     return render(request, "home/edit_information.html")
+
 
 @login_required
 def user_update(request):
@@ -130,21 +137,23 @@ def user_update(request):
         city = request.POST["city"]
         province = request.POST["province"]
         zipcode = request.POST["zipcode"]
-        
+
         contact_no = request.POST["contact_no"]
-        
+
         user = User.objects.get(id=request.user.id)
         user_info = None
         try:
-            user_info = PersonalInformation.objects.get(user_id = request.user)
+            user_info = PersonalInformation.objects.get(user_id=request.user)
         except PersonalInformation.DoesNotExist:
-            user_info = PersonalInformation.objects.create(user_id=request.user, 
-                                   address_1="", 
-                                   city="", 
-                                   province="", 
-                                   zipcode=0,
-                                   ContactNumber = 0)
-        
+            user_info = PersonalInformation.objects.create(
+                user_id=request.user,
+                address_1="",
+                city="",
+                province="",
+                zipcode=0,
+                ContactNumber=0,
+            )
+
         user_info.address_1 = address_1
         user_info.city = city
         user_info.province = province
@@ -157,4 +166,14 @@ def user_update(request):
         user.last_name = last_name
         user.email = email
         user.save()
-    return HttpResponse('')
+    return HttpResponse("")
+
+
+def checkout(request):
+    products = Cart.objects.filter(user_id=request.user, ordered=False)
+    total = 0
+
+    for price in products:
+        total += price.product_id.price * price.quantity
+
+    return render(request, "home/checkout.html", {"products": products, "total": total})
