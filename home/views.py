@@ -104,9 +104,15 @@ def update_cart(request):
         cart_item = Cart.objects.get(pk=p_id)
         if data[0] == 'inc':
             print("debug2")
+            if cart_item.quantity >= 99:
+                return HttpResponse('')
             cart_item.quantity += 1
             cart_item.save()
         elif data[0] == 'dec':
+            if cart_item.quantity <= 0:
+                return HttpResponse('')
             cart_item.quantity -= 1
             cart_item.save()
+        elif data[0] == 'rm':
+            cart_item.delete()
     return HttpResponse('')
