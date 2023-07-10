@@ -121,10 +121,10 @@ def information(request):
 def edit_information(request):
 
     if request.method == "POST":
-        #username = request.POST["username"]
+        username = request.POST["username"]
         first_name = request.POST["first_name"]
         last_name = request.POST["last_name"]
-        #email = request.POST["email"]
+        email = request.POST["email"]
         address_1 = request.POST["address_1"]
         city = request.POST["city"]
         province = request.POST["province"]
@@ -142,11 +142,31 @@ def edit_information(request):
         user_info.ContactNumber = contact_no
         user_info.save()
 
-        #user.username = username
+        user.username = username
         user.first_name = first_name
         user.last_name = last_name
-        #user.email = email
+        user.email = email
         user.save()
 
     return render(request, "home/edit_information.html", {'info': PersonalInformation.objects.get(user_id=request.user)})
 
+@login_required
+def checkout(request):
+
+    if request.method == 'POST':
+        cart_items = Cart.objects.filter(user_id=request.user)
+        address = "{0}, {1}, {2}, {3}".format(user_info.address_1, user_info.city, user_info.province, user_info.zipcode)
+        order = Orders.objects.create(request.user, False, address)
+        data = request.POST['pay_method']
+        user_info = PersonalInformation.objects.get(user_id=request.user)
+        for i in cart_items:
+            address = "{0}, {1}, {2}".format(user_info.address_1, user_info.city, user_info.province, user_info.zipcode)
+            OrderDetails.objects.create(order, i.product_id, data, i.quantity)
+            i.ordered = True
+
+        cart_items.filter(ordered=True).delete()
+    
+    return render(request, "home/checkout.html")
+
+        
+        
