@@ -160,7 +160,6 @@ def checkout(request):
         data = request.POST['pay_method']
         user_info = PersonalInformation.objects.get(user_id=request.user)
         for i in cart_items:
-            address = "{0}, {1}, {2}".format(user_info.address_1, user_info.city, user_info.province, user_info.zipcode)
             OrderDetails.objects.create(order, i.product_id, data, i.quantity)
             i.ordered = True
 
