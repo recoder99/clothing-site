@@ -11,6 +11,6 @@ class pi_form(ModelForm):
     class Meta:
         model=PersonalInformation
         #<Variable Name>
-        fields = ['Address', 'ContactNumber']
+        fields = '__all__'
         #<Variable Name>:<Label>
         labels = {'Address':"Address", 'ContactNumber':"Contact Number"}

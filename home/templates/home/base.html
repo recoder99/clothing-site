@@ -24,8 +24,10 @@
       referrerpolicy="no-referrer"
     />
 
-    <script type="text/javascript" src="{% static 'jquery-3.7.0.min.js' %}">
-    </script> 
+    <script
+      type="text/javascript"
+      src="{% static 'jquery-3.7.0.min.js' %}"
+    ></script>
     <title>Envy</title>
 
     <style>
@@ -40,17 +42,17 @@
         color: #d6d6d6;
       }
 
-      .product-image{
-        width:260px;
-        height:390px;
-        overflow:hidden;
-    }
+      .product-image {
+        width: 260px;
+        height: 390px;
+        overflow: hidden;
+      }
 
-    .cart-img{
-      width:140px;
-      height:200px;
-      overflow:hidden;
-    }
+      .cart-img {
+        width: 140px;
+        height: 200px;
+        overflow: hidden;
+      }
     </style>
   </head>
   <body class="px-50">
@@ -103,8 +105,8 @@
           </li>
           {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="/login"
-              >Welcome! {{request.user.username}}</a
+            <a class="nav-link" href="/information"
+              >{{request.user.username}}</a
             >
           </li>
           <li class="nav-item">

@@ -24,7 +24,6 @@ def faq(request):
 
 
 def login_user(request):
-
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -109,6 +108,57 @@ def update_cart(request):
         elif data[0] == 'dec':
             cart_item.quantity -= 1
             cart_item.save()
+        elif data[0] == 'rm':
+            cart_item.delete()
+    return HttpResponse("")
+
+
+def information(request):
+    return render(request, "home/information.html")
+
+def edit_information(request):
+    return render(request, "home/edit_information.html")
+
+@login_required
+def user_update(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        first_name = request.POST["first_name"]
+        last_name = request.POST["last_name"]
+        email = request.POST["email"]
+        address_1 = request.POST["address_1"]
+        city = request.POST["city"]
+        province = request.POST["province"]
+        zipcode = request.POST["zipcode"]
+        
+        contact_no = request.POST["contact_no"]
+        
+        user = User.objects.get(id=request.user.id)
+        user_info = None
+        try:
+            user_info = PersonalInformation.objects.get(user_id = request.user)
+        except PersonalInformation.DoesNotExist:
+            user_info = PersonalInformation.objects.create(user_id=request.user, 
+                                   address_1="", 
+                                   city="", 
+                                   province="", 
+                                   zipcode=0,
+                                   ContactNumber = 0)
+        
+        user_info.address_1 = address_1
+        user_info.city = city
+        user_info.province = province
+        user_info.zipcode = zipcode
+        user_info.ContactNumber = contact_no
+        user_info.save()
+
+        user.username = username
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        user.save()
+
+
         elif data[0] == 'rm':
             cart_item.delete()
     return HttpResponse('')
