@@ -4,6 +4,8 @@ from .models import *
 class CategoryInline(admin.TabularInline):
     model = Category
 
+class UserInfoAdmin(admin.ModelAdmin):
+    model = PersonalInformation
 # Register your models here.
 class ProductsAdmin(admin.ModelAdmin):
     fields = ['product_name', 'description', 'price', 'product_image']
@@ -20,3 +22,4 @@ class CartAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductsAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Cart, CartAdmin)
+admin.site.register(PersonalInformation, UserInfoAdmin)

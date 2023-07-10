@@ -60,6 +60,7 @@ def signup(request):
         user.first_name = first_name
         user.last_name = last_name
         user.save()
+        PersonalInformation.objects.create(user_id=user)
         return redirect("/login")
 
     return render(request, "home/signup.html")
@@ -113,19 +114,17 @@ def update_cart(request):
     return HttpResponse("")
 
 
+@login_required
 def information(request):
-    return render(request, "home/information.html")
+    return render(request, "home/information.html", {'info': PersonalInformation.objects.get(user_id=request.user)})
 
 def edit_information(request):
-    return render(request, "home/edit_information.html")
 
-@login_required
-def user_update(request):
     if request.method == "POST":
-        username = request.POST["username"]
+        #username = request.POST["username"]
         first_name = request.POST["first_name"]
         last_name = request.POST["last_name"]
-        email = request.POST["email"]
+        #email = request.POST["email"]
         address_1 = request.POST["address_1"]
         city = request.POST["city"]
         province = request.POST["province"]
@@ -134,17 +133,8 @@ def user_update(request):
         contact_no = request.POST["contact_no"]
         
         user = User.objects.get(id=request.user.id)
-        user_info = None
-        try:
-            user_info = PersonalInformation.objects.get(user_id = request.user)
-        except PersonalInformation.DoesNotExist:
-            user_info = PersonalInformation.objects.create(user_id=request.user, 
-                                   address_1="", 
-                                   city="", 
-                                   province="", 
-                                   zipcode=0,
-                                   ContactNumber = 0)
-        
+        user_info = PersonalInformation.objects.get(user_id = request.user)
+
         user_info.address_1 = address_1
         user_info.city = city
         user_info.province = province
@@ -152,9 +142,11 @@ def user_update(request):
         user_info.ContactNumber = contact_no
         user_info.save()
 
-        user.username = username
+        #user.username = username
         user.first_name = first_name
         user.last_name = last_name
-        user.email = email
+        #user.email = email
         user.save()
-    return HttpResponse('')
+
+    return render(request, "home/edit_information.html", {'info': PersonalInformation.objects.get(user_id=request.user)})
+

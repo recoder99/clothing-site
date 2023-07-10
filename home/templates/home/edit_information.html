@@ -5,34 +5,43 @@
     <div class="border rounded-5 p-3 bg-white shadow box-area" style="width: 300px">
         <div class="col">
             <h1 class="h1">Information</h1>
-            <form>
+            <form method='post'>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Username</label>
+                    <input name="username" type="text" class="form-control" id="exampleInputEmail1" value="{{request.user.username}}">
+                </div>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">First Name</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" value="{{request.user.first_name}}">
+                  <input name="first_name" type="text" class="form-control" id="exampleInputEmail1" value="{{request.user.first_name}}">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" value="Greyrat">
+                    <input name="last_name" type="text" class="form-control" id="exampleInputEmail1" value="{{request.user.last_name}}">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Street</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" value="you">
+                    <label for="exampleInputEmail1" class="form-label">E-mail</label>
+                    <input name="email" type="text" class="form-control" id="exampleInputEmail1" value="{{request.user.email}}">
+                  </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">House Lot No./Street/Brgy</label>
+                    <input name="address_1"name="first_name" type="text" class="form-control" id="exampleInputEmail1" value="{{ info.address_1 }}">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">City</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" value="get">
+                    <input name="city" type="text" class="form-control" id="exampleInputEmail1" value="{{ info.city }}">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Province</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" value="the">
+                    <input name="province" type="text" class="form-control" id="exampleInputEmail1" value="{{ info.province }}">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Zip Code</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" value="idea">
+                    <input name="zipcode" type="text" class="form-control" id="exampleInputEmail1" value=" {{ info.zipcode }} ">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Contact #</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" value="idea">
+                    <input name="contact_no" type="text" class="form-control" id="exampleInputEmail1" value=" {{ info.ContactNumber }}">
                 </div>
                 <button type="submit" class="btn btn-primary btn-dark">Confirm</button>
             </form>
