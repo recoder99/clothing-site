@@ -109,4 +109,6 @@ def update_cart(request):
         elif data[0] == 'dec':
             cart_item.quantity -= 1
             cart_item.save()
+        elif data[0] == 'rm':
+            cart_item.delete()
     return HttpResponse('')
