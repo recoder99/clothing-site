@@ -24,7 +24,6 @@ def faq(request):
 
 
 def login_user(request):
-
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -111,7 +110,14 @@ def update_cart(request):
             cart_item.save()
         elif data[0] == 'rm':
             cart_item.delete()
-    return HttpResponse('')
+    return HttpResponse("")
+
+
+def information(request):
+    return render(request, "home/information.html")
+
+def edit_information(request):
+    return render(request, "home/edit_information.html")
 
 @login_required
 def user_update(request):

@@ -1,0 +1,27 @@
+{% extends "home/base.html" %} {%block content%} {%load static%}
+
+<div
+  class="bg-white mx-auto position-relative"
+  style="width: 1200px; height: 5000"
+>
+  <div class="container">
+    <div class="row">
+      <!--Current information-->
+      <div class="card col-5">
+        <h1>Your Information</h1>
+        <h5>Name: Rudeus Greyrat</h5>
+        <h5>Address: Antipolo, New York</h5>
+        <h5>Contact #: 09876543210</h5>
+      </div>
+      <!--Edit Information button-->
+      <div>
+        <a href="/edit_information">
+          <button type="button" class="btn btn-dark mt-2">
+            Edit Information
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
