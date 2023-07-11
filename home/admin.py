@@ -1,16 +1,15 @@
 from django.contrib import admin
 from .models import *
 
-class CategoryInline(admin.TabularInline):
-    model = Category
-
 class UserInfoAdmin(admin.ModelAdmin):
     model = PersonalInformation
 # Register your models here.
-class ProductsAdmin(admin.ModelAdmin):
-    fields = ['product_name', 'description', 'price', 'product_image']
-    inlines = [CategoryInline]
 
+
+class ProductsAdmin(admin.ModelAdmin):
+    fields = ['product_name', 'description', 'price', 'product_image', 'category_name']
+    filter_horizontal = ('category_name',)
+    
 
 class CategoryAdmin(admin.ModelAdmin):
     fields = ['category_name']
