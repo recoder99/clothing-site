@@ -33,55 +33,58 @@
         <!--Checkout Information-->
       </div>
       <div class="col">
-        <h1>Order #6940</h1>
+        <h1>Order Summary</h1>
         <div class="row">
           <p class="col-6">Recepient:</p>
-          <p class="col-6">Yamashita Dela Cruz</p>
+          <p class="col-6">{{request.user.first_name}} {{request.user.last_name}}</p>
           <p class="col-6">Delivery Address:</p>
           <p class="col-6">
-            Brgy. 69 Ermita St. Tondo, Manila, Metro Manila, 3020, Philippines
+            {{info.address_1}}, {{info.city}}, {{info.province}}, {{info.zipcode}}
           </p>
           <p class="col-6">Contact #:</p>
-          <p class="col-6">09876543210</p>
+          <p class="col-6">{{ info.ContactNumber }}</p>
         </div>
+        {% csrf_token %}
         <h3>Mode of Payment</h3>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="pay_method"
-            id="cod"
-            checked
-          />
-          <label class="form-check-label" for="cod"> Cash on Delivery </label>
-        </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="pay_method"
-            id="mob"
-          />
-          <label class="form-check-label" for="mob"> Mobile Payment </label>
-        </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="pay_method"
-            id="ccv"
-          />
-          <label class="form-check-label" for="ccv"> Credit/Debit Card </label>
-        </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="pay_method"
-            id="crypt"
-          />
-          <label class="form-check-label" for="crypt"> Crypto Currency </label>
-        </div>
+        <form method='post'>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="pay_method"
+              value="cod"
+              checked
+            />
+            <label class="form-check-label" for="cod"> Cash on Delivery </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="pay_method"
+              value="mob"
+            />
+            <label class="form-check-label" for="mob"> Mobile Payment </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="pay_method"
+              value="ccv"
+            />
+            <label class="form-check-label" for="ccv"> Credit/Debit Card </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="pay_method"
+              value="crypt"
+            />
+            <label class="form-check-label" for="crypt"> Crypto Currency </label>
+          </div>
+        </form>
         <button
           type="button"
           class="btn btn-dark mt-5"
@@ -120,7 +123,7 @@
                 >
                   Close
                 </button>
-                <button type="button" class="btn btn-primary">
+                <button type="button" id="confirm" class="btn btn-primary">
                   Save changes
                 </button>
               </div>
@@ -128,6 +131,23 @@
           </div>
         </div>
       </div>
+      <script>
+        var main = $('#confirm').click(function(){
+          var CSRFtoken = $("input[name=csrfmiddlewaretoken]").val();
+          var data = $("input[name=pay_method]:checked").val();
+    
+          $.post(
+            "/checkout",
+            {
+              pay_method: data,
+              csrfmiddlewaretoken: CSRFtoken,
+            },
+            function () {
+              location.reload();
+            }
+          );
+        })
+      </script>
     </div>
   </div>
   {%endblock%}

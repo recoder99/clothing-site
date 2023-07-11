@@ -28,6 +28,7 @@ class Product(models.Model):
     description = models.TextField()
     category_name = models.ManyToManyField(Category)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    sold = models.IntegerField(default=0)
 
     def __str__(self):
         return self.product_name
@@ -35,6 +36,7 @@ class Product(models.Model):
 class Orders(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     delivered = models.BooleanField()
+    pay_method = models.CharField(max_length=100, null=True)
     delivery_address = models.CharField(max_length=150)
 
     def __str__(self):
@@ -53,7 +55,6 @@ class Cart(models.Model):
 class OrderDetails(models.Model):
     order_id = models.ForeignKey(Orders, on_delete=models.CASCADE)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    pay_method = models.CharField(max_length=100)
     quantity = models.IntegerField()
 
     def __str__(self):

@@ -168,19 +168,23 @@ def edit_information(request):
 @login_required
 def checkout(request):
     cart_items = Cart.objects.filter(user_id=request.user)
+    user_info = PersonalInformation.objects.get(user_id=request.user)
 
     if request.method == "POST":
 
+        data = request.POST["pay_method"]
         address = "{0}, {1}, {2}, {3}".format(
             user_info.address_1, user_info.city, user_info.province, user_info.zipcode
         )
-        order = Orders.objects.create(request.user, False, address)
-        data = request.POST["pay_method"]
+        order = Orders.objects.create(user_id=request.user, delivered=False, pay_method=data, delivery_address=address)
         user_info = PersonalInformation.objects.get(user_id=request.user)
         for i in cart_items:
-            OrderDetails.objects.create(order, i.product_id, data, i.quantity)
+            OrderDetails.objects.create(order_id=order, product_id=i.product_id, quantity=i.quantity)
             i.ordered = True
+            i.product_id.sold += i.quantity
+            i.save()
+            i.product_id.save()
 
-        cart_items.filter(ordered=True).delete()
+        cart_items.filter(ordered=True).all().delete()
 
-    return render(request, "home/checkout.html", {"cart": cart_items})
+    return render(request, "home/checkout.html", {"cart": cart_items, "info": user_info})

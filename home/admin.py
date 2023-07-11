@@ -7,10 +7,9 @@ class UserInfoAdmin(admin.ModelAdmin):
 
 
 class ProductsAdmin(admin.ModelAdmin):
-    fields = ['product_name', 'description', 'price', 'product_image', 'category_name']
+    fields = ['product_name', 'description', 'price', 'product_image', 'sold', 'category_name']
     filter_horizontal = ('category_name',)
     
-
 class CategoryAdmin(admin.ModelAdmin):
     fields = ['category_name']
 
