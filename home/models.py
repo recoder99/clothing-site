@@ -12,7 +12,7 @@ class PersonalInformation(models.Model):
     city = models.CharField(max_length=100, blank=True)
     province = models.CharField(max_length=100, blank=True)
     zipcode = models.IntegerField(blank=True, null=True)
-    ContactNumber = models.IntegerField(default=0, blank=True)
+    ContactNumber = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return self.user_id.first_name
