@@ -119,12 +119,15 @@ def update_cart(request):
     return HttpResponse("")
 
 
-@login_required
+@login_required(login_url="login")
 def information(request):
+    
     return render(
         request,
         "home/information.html",
         {"info": PersonalInformation.objects.get(user_id=request.user)},
+        {"deliver", Orders.objects.get(user_id=request.user, delivered=False)},
+        {"delivered", Orders.objects.get(user_id=request.user, delivered=True)}
     )
 
 
@@ -165,9 +168,10 @@ def edit_information(request):
     )
 
 
-@login_required
+@login_required(login_url="login")
 def checkout(request):
     cart_items = Cart.objects.filter(user_id=request.user)
+    cart_items.filter()
     user_info = PersonalInformation.objects.get(user_id=request.user)
 
     if request.method == "POST":
