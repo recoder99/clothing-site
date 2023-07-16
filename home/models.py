@@ -44,7 +44,7 @@ class Orders(models.Model):
     delivery_address = models.CharField(max_length=150)
 
     def __str__(self):
-        return self.pk
+        return str(self.pk)
     
 
 class Cart(models.Model):
