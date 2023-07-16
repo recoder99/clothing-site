@@ -12,6 +12,7 @@
         <h5>Address: {{info.address_1}}, {{info.city}}, {{info.province}}, {{info.zipcode}}</h5>
         <h5>Contact #: {{info.ContactNumber}}</h5>
       </div>
+
       <!--Edit Information button-->
       <div>
         <a href="/edit_information">
@@ -19,6 +20,40 @@
             Edit Information
           </button>
         </a>
+      </div>
+    </div>
+
+    <!--Order Status-->
+    <div role="tabpanel">
+      <!-- List group -->
+      <div class="card mt-5">
+          <div class="card-header" id="myList" role="tablist">
+              <ul class="nav nav-tabs card-header-tabs">
+                  <li class="nav-item active">
+                      <a class="nav-link active text-dark" data-bs-toggle="list" href="#home" role="tab">Delivering <span class="badge text-bg-dark">4</span></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link text-dark" data-bs-toggle="list" href="#profile" role="tab">Delivered <span class="badge text-bg-dark">0</span></a>
+                  </li>
+              </ul>
+            </div>
+      </div>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel"><img
+          src="{% static 'index/otv_collab.png' %}"
+          class="d-block w-100"
+          alt="..."
+        /></div>
+
+        <div class="tab-pane" id="profile" role="tabpanel">
+          <img
+          src="{% static 'index/tt_collab.png' %}"
+          class="d-block w-100"
+          alt="..."
+        />
+        </div>
       </div>
     </div>
   </div>
