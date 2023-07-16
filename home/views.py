@@ -126,8 +126,8 @@ def information(request):
         request,
         "home/information.html",
         {"info": PersonalInformation.objects.get(user_id=request.user)},
-        {"deliver", Orders.objects.get(user_id=request.user, delivered=False)},
-        {"delivered", Orders.objects.get(user_id=request.user, delivered=True)}
+        {"deliver", Orders.objects.filter(user_id=request.user, delivered=False)},
+        {"delivered", Orders.objects.filter(user_id=request.user, delivered=True)}
     )
 
 
