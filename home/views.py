@@ -125,9 +125,10 @@ def information(request):
     return render(
         request,
         "home/information.html",
-        {"info": PersonalInformation.objects.get(user_id=request.user)},
-        {"deliver": Orders.objects.filter(user_id=request.user, delivered=False)},
-        {"delivered": Orders.objects.filter(user_id=request.user, delivered=True)}
+        {"info": PersonalInformation.objects.get(user_id=request.user),
+        "deliver": Orders.objects.filter(user_id=request.user, delivered=False),
+        "delivered": Orders.objects.filter(user_id=request.user, delivered=True)
+        }
     )
 
 
