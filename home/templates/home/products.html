@@ -8,13 +8,14 @@
         By type
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Tops</a></li>
-        <li><a class="dropdown-item" href="#">Blouses</a></li>
-        <li><a class="dropdown-item" href="#">Sweaters</a></li>
-        <li><a class="dropdown-item" href="#">Pants</a></li>
-        <li><a class="dropdown-item" href="#">Dresses</a></li>
-        <li><a class="dropdown-item" href="#">Jackets</a></li>
-        <li><a class="dropdown-item" href="#">Shirts</a></li>
+        <li><a class="dropdown-item type tag" href="#">None</a></li>
+        <li><a class="dropdown-item type tag" href="#">Tops</a></li>
+        <li><a class="dropdown-item type tag" href="#">Blouses</a></li>
+        <li><a class="dropdown-item type tag" href="#">Sweaters</a></li>
+        <li><a class="dropdown-item type tag" href="#">Pants</a></li>
+        <li><a class="dropdown-item type tag" href="#">Dresses</a></li>
+        <li><a class="dropdown-item type tag" href="#">Jackets</a></li>
+        <li><a class="dropdown-item type tag" href="#">Shirts</a></li>
       </ul>
     </div>
   </div>
@@ -26,10 +27,11 @@
         By style
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Business</a></li>
-        <li><a class="dropdown-item" href="#">Casual/Everyday</a></li>
-        <li><a class="dropdown-item" href="#">Athletic</a></li>
-        <li><a class="dropdown-item" href="#">Formal</a></li>
+        <li><a class="dropdown-item style tag" href="#">None</a></li>
+        <li><a class="dropdown-item style tag" href="#">Business</a></li>
+        <li><a class="dropdown-item style tag" href="#">Casual</a></li>
+        <li><a class="dropdown-item style tag" href="#">Athletic</a></li>
+        <li><a class="dropdown-item style tag" href="#">Formal</a></li>
       </ul>
     </div>
   </div>
@@ -41,9 +43,10 @@
         By sex
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Men</a></li>
-        <li><a class="dropdown-item" href="#">Women</a></li>
-        <li><a class="dropdown-item" href="#">Unisex</a></li>
+        <li><a class="dropdown-item sex tag" href="#">None</a></li>
+        <li><a class="dropdown-item sex tag" href="#">Men</a></li>
+        <li><a class="dropdown-item sex tag" href="#">Women</a></li>
+        <li><a class="dropdown-item sex tag" href="#">Unisex</a></li>
       </ul>
     </div>
   </div>
@@ -53,7 +56,7 @@
   style="width: 1200px; height: 5000"
 >
   <!--Items-->
-  <div class="container mt-5">
+  <div id="item_content" class="container mt-5">
     <div class="row row-cols-5">
       {% for p in products %}
       <div class="col mb-2">
@@ -79,4 +82,25 @@
     </div>
   </div>
 </div>
+<script>
+  var main = $("a.tag").click(function(){
+    const urlParams = new URLSearchParams(window.location.search);
+    data = urlParams.get('q').split(" ");
+    if($(this).hasClass("type")){
+      data[0] = $(this).text();
+    } else if ($(this).hasClass("style")) {
+      data[1] = $(this).text();
+    } else if ($(this).hasClass("sex")) {
+      data[2] = $(this).text();
+    }
+    var url = "/products?q=";
+
+    $.each(data, function(i, value){
+      url = url + value + "+";
+    });
+    alert(url);
+
+    window.location.replace(url);
+  });
+</script>
 {% endblock %}

@@ -210,6 +210,13 @@ def order_information(request, id):
 
 
 def products(request):
-
     products = Product.objects.all()
+
+    data =  str(request.GET['q'])
+    s_dat = data.split()
+    for i in s_dat:
+        if i == "None":
+            continue
+        products = products.filter(category_name=Category.objects.get(category_name=i))
+    
     return render(request, "home/products.html", {"products": products})
