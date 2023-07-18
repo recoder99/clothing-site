@@ -1,0 +1,6 @@
+{% extends "home/base.html" %} {% block content%} {%load static%}
+<h1>Search query returns:</h1>
+{% for i in products %}
+<p>{{i.product_name}}<br></p>
+{% endfor %}
+{% endblock %}

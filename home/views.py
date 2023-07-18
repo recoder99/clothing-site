@@ -220,3 +220,11 @@ def products(request):
         products = products.filter(category_name=Category.objects.get(category_name=i))
     
     return render(request, "home/products.html", {"products": products})
+
+def search(request):
+    products = Product.objects.all()
+    query = request.GET['q']
+    print(query)
+    for i in query:
+        products = products.filter(product_name__icontains=i)
+    return render(request, "home/search.html", {"products": products})
