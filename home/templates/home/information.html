@@ -36,7 +36,7 @@
         >
           {% for d in deliver %}
           <div>
-            <a class="col-12" href="order/{{d.id}}">{{ d.pk }}</a>
+            <a class="col-12" href="order/{{d.id}}">Order No. {{ d.pk }}</a>
           </div>
           {%endfor%}
         </div>
@@ -50,7 +50,7 @@
         >
           {% for d in delivered %}
           <div>
-            <a class="col-12" href="#">{{ d.pk }}</a>
+            <a class="col-12" href="#">Order No. {{ d.pk }}</a>
           </div>
           {%endfor%}
         </div>

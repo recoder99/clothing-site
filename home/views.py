@@ -206,7 +206,7 @@ def checkout(request):
 
 
 def order_information(request, id):
-    order = get_object_or_404(Orders, id=id)
+    order = OrderDetails.objects.filter(order_id=id)
     return render(request, "home/order_information.html", {"order": order})
 
 

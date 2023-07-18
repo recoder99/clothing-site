@@ -63,16 +63,14 @@
           >
             Add to Cart
           </button>
-          <button type="button" class="btn btn-dark btn-lg">Buy Now</button>
+          <button type="button" id="buy_now" class="btn btn-dark btn-lg">Buy Now</button>
         </div>
         <script>
           var main = function () {
             $("#add_to_cart").click(function () {
-              alert("clicked");
               var CSRFtoken = $("input[name=csrfmiddlewaretoken]").val();
               var product = $("input[name=product_id]").val();
               var data = $("input[name=quantity_input]").val();
-              alert("processed " + product + data);
               $.post("/add_to_cart", {
                 product_id: product,
                 quantity: data,
@@ -80,6 +78,19 @@
               });
               alert("product added to cart");
             });
+
+            $('#buy_now').click(function(){
+              var CSRFtoken = $("input[name=csrfmiddlewaretoken]").val();
+              var product = $("input[name=product_id]").val();
+              var data = $("input[name=quantity_input]").val();
+              $.post("/add_to_cart", {
+                product_id: product,
+                quantity: data,
+                csrfmiddlewaretoken: CSRFtoken,
+              }, function(){
+                window.location.replace("/cart")
+              });
+            })
           };
 
           $(document).ready(main);
