@@ -1,0 +1,86 @@
+{% extends "home/base.html" %} {%block script%} {%load static%}
+<script src="{% static 'quantityChange.js' %}"></script>
+
+{% endblock %} {% block content %}
+<div
+  class="bg-white mx-auto position-relative"
+  style="width: 1200px; height: 5000"
+>
+  <div class="container" style="width: 1000px">
+    {% csrf_token %} {%for p in products%}
+    <div class="row border mb-3">
+      <!--Image-->
+      <div class="col-2">
+        <image
+          class="cart-img"
+          src="{{p.product_id.product_image.url}}"
+        ></image>
+      </div>
+      <!--Detail-->
+      <div class="col-9">
+        <h1 class="">{{p.product_id.product_name}}</h1>
+        <div class="">
+          <h4 class="">₱{{p.product_id.price}}</h4>
+        </div>
+        <!--Quantity form buttons and input -->
+        <div class="row row-cols-lg-auto g-3 align-items-center mt-5">
+          <p class="col-12">Quantity:</p>
+          <button
+            type="button"
+            id="dec_{{p.id}}"
+            class="col-12 btn btn-outline-dark btn-sm mb-2 quantity-button increment"
+            style="padding-top: 1px; padding-bottom: 1px"
+          >
+            -
+          </button>
+          <input
+            type="text"
+            class="mb-2 mx-2 quantity_input"
+            id="{{p.id}}"
+            value="{{p.quantity}}"
+            style="width: 30px"
+          />
+
+          <button
+            type="button"
+            id="inc_{{p.id}}"
+            class="col-12 btn btn-outline-dark btn-sm mb-2 quantity-button decrement"
+            style="padding: 1px 7px"
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <div class="col-1">
+        <button
+          type="button"
+          id="rm_{{p.id}}"
+          class="btn btn-link link-underline link-underline-opacity-0 text-dark quantity-button"
+          style="margin: 70px 0 0 0"
+        >
+          <h4>X</h4>
+        </button>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+  <script>
+    var main = $(".quantity-button").click(function () {
+      var CSRFtoken = $("input[name=csrfmiddlewaretoken]").val();
+      var data = $(this).attr("id");
+
+      $.post(
+        "/update_cart",
+        {
+          data: data,
+          csrfmiddlewaretoken: CSRFtoken,
+        },
+        function () {
+          location.reload();
+        }
+      );
+    });
+    $(document).ready(main);
+  </script>
+</div>
+{% endblock %}

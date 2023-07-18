@@ -9,7 +9,10 @@
       <div class="card col-5">
         <h1>Your Information</h1>
         <h5>Name: {{request.user.first_name}} {{request.user.last_name}}</h5>
-        <h5>Address: {{info.address_1}}, {{info.city}}, {{info.province}}, {{info.zipcode}}</h5>
+        <h5>
+          Address: {{info.address_1}}, {{info.city}}, {{info.province}},
+          {{info.zipcode}}
+        </h5>
         <h5>Contact #: {{info.ContactNumber}}</h5>
       </div>
 
@@ -24,35 +27,32 @@
     </div>
 
     <!--Order Status-->
-    <div role="tabpanel">
-      <!-- List group -->
-      <div class="card mt-5">
-          <div class="card-header" id="myList" role="tablist">
-              <ul class="nav nav-tabs card-header-tabs">
-                  <li class="nav-item active">
-                      <a class="nav-link active text-dark" data-bs-toggle="list" href="#home" role="tab">Delivering <span class="badge text-bg-dark">4</span></a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link text-dark" data-bs-toggle="list" href="#profile" role="tab">Delivered <span class="badge text-bg-dark">0</span></a>
-                  </li>
-              </ul>
-            </div>
+    <div class="row mt-2">
+      <div class="col">
+        <p class="h2">Delivering</p>
+        <div
+          class="row overflow-y-scroll border"
+          style="height: 250px; width: 500px"
+        >
+          {% for d in deliver %}
+          <div>
+            <a class="col-12" href="order/{{d.id}}">{{ d.pk }}</a>
+          </div>
+          {%endfor%}
+        </div>
       </div>
 
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div class="tab-pane active" id="home" role="tabpanel"><img
-          src="{% static 'index/otv_collab.png' %}"
-          class="d-block w-100"
-          alt="..."
-        /></div>
-
-        <div class="tab-pane" id="profile" role="tabpanel">
-          <img
-          src="{% static 'index/tt_collab.png' %}"
-          class="d-block w-100"
-          alt="..."
-        />
+      <div class="col">
+        <p class="h2">Delivered</p>
+        <div
+          class="row overflow-y-scroll border"
+          style="height: 250px; width: 500px"
+        >
+          {% for d in delivered %}
+          <div>
+            <a class="col-12" href="#">{{ d.pk }}</a>
+          </div>
+          {%endfor%}
         </div>
       </div>
     </div>

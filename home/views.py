@@ -121,14 +121,15 @@ def update_cart(request):
 
 @login_required(login_url="login")
 def information(request):
-    
+
     return render(
         request,
         "home/information.html",
-        {"info": PersonalInformation.objects.get(user_id=request.user),
-        "deliver": Orders.objects.filter(user_id=request.user, delivered=False),
-        "delivered": Orders.objects.filter(user_id=request.user, delivered=True)
-        }
+        {
+            "info": PersonalInformation.objects.get(user_id=request.user),
+            "deliver": Orders.objects.filter(user_id=request.user, delivered=False),
+            "delivered": Orders.objects.filter(user_id=request.user, delivered=True),
+        },
     )
 
 
@@ -181,10 +182,17 @@ def checkout(request):
         address = "{0}, {1}, {2}, {3}".format(
             user_info.address_1, user_info.city, user_info.province, user_info.zipcode
         )
-        order = Orders.objects.create(user_id=request.user, delivered=False, pay_method=data, delivery_address=address)
+        order = Orders.objects.create(
+            user_id=request.user,
+            delivered=False,
+            pay_method=data,
+            delivery_address=address,
+        )
         user_info = PersonalInformation.objects.get(user_id=request.user)
         for i in cart_items:
-            OrderDetails.objects.create(order_id=order, product_id=i.product_id, quantity=i.quantity)
+            OrderDetails.objects.create(
+                order_id=order, product_id=i.product_id, quantity=i.quantity
+            )
             i.ordered = True
             i.product_id.sold += i.quantity
             i.save()
@@ -192,4 +200,17 @@ def checkout(request):
 
         cart_items.filter(ordered=True).all().delete()
 
-    return render(request, "home/checkout.html", {"cart": cart_items, "info": user_info})
+    return render(
+        request, "home/checkout.html", {"cart": cart_items, "info": user_info}
+    )
+
+
+def order_information(request, id):
+    order = get_object_or_404(Orders, id=id)
+    return render(request, "home/order_information.html", {"order": order})
+
+
+def product(request):
+
+    products = Product.objects.all()
+    return render(request, "home/index.html", {"products": products})

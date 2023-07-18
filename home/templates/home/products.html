@@ -1,0 +1,36 @@
+{% extends "home/base.html" %} {% block content%} {%load static%}
+<div
+  class="bg-white mx-auto position-relative"
+  style="width: 1200px; height: 5000"
+>
+  <!--Items-->
+  <div class="container mt-5">
+    <div class="row row-cols-5">
+      <div class="col col-12 bg-black text-white">
+        <p class="h2">Hot Products</p>
+      </div>
+      {% for p in products %}
+      <div class="col mb-2">
+        <a class="nav-link" href="product/{{p.id}}">
+          <div class="card">
+            <img
+              src="{{p.product_image.url}}"
+              class="card-img-top"
+              alt="Product Image"
+            />
+            <div class="card-body">
+              <h5 class="card-title text-center">{{p.product_name}}</h5>
+              <div class="row justify-content-evenly">
+                <p class="card-text">₱{{p.price}}</p>
+                <p class="card-text text-truncate">{{p.description}}</p>
+                <p class="card-text text-secondary">{{p.sold}} Sold</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
