@@ -1,4 +1,53 @@
 {% extends "home/base.html" %} {% block content%} {%load static%}
+<!--Put buttons-->
+<div class="row ms-5">
+  <div class="col-1">
+    <!--By Type-->
+    <div class="dropdown col">
+      <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        By type
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Tops</a></li>
+        <li><a class="dropdown-item" href="#">Blouses</a></li>
+        <li><a class="dropdown-item" href="#">Sweaters</a></li>
+        <li><a class="dropdown-item" href="#">Pants</a></li>
+        <li><a class="dropdown-item" href="#">Dresses</a></li>
+        <li><a class="dropdown-item" href="#">Jackets</a></li>
+        <li><a class="dropdown-item" href="#">Shirts</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-1 me-5">
+    <!--By Style-->
+    <div class="dropdown col">
+      <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        By style
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Business</a></li>
+        <li><a class="dropdown-item" href="#">Casual/Everyday</a></li>
+        <li><a class="dropdown-item" href="#">Athletic</a></li>
+        <li><a class="dropdown-item" href="#">Formal</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-1 ms-4">
+    <!--By Sex-->
+    <div class="dropdown col">
+      <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        By sex
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Men</a></li>
+        <li><a class="dropdown-item" href="#">Women</a></li>
+        <li><a class="dropdown-item" href="#">Unisex</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 <div
   class="bg-white mx-auto position-relative"
   style="width: 1200px; height: 5000"
@@ -6,9 +55,6 @@
   <!--Items-->
   <div class="container mt-5">
     <div class="row row-cols-5">
-      <div class="col col-12 bg-black text-white">
-        <p class="h2">Hot Products</p>
-      </div>
       {% for p in products %}
       <div class="col mb-2">
         <a class="nav-link" href="product/{{p.id}}">

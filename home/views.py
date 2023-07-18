@@ -209,7 +209,7 @@ def order_information(request, id):
     return render(request, "home/order_information.html", {"order": order})
 
 
-def product(request):
+def products(request):
 
     products = Product.objects.all()
-    return render(request, "home/index.html", {"products": products})
+    return render(request, "home/products.html", {"products": products})
