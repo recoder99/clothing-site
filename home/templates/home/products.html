@@ -1,43 +1,55 @@
 {% extends "home/base.html" %} {% block content%} {%load static%}
 
-
 <div
   class="bg-white mx-auto position-relative"
   style="width: 1200px; height: 5000"
 >
   <!--By Type-->
-<div class="row ms-5">
-  <select class="form-select bg-dark text-white me-1" aria-label="Default select example" style="width: 105px;">
-    <option>By Type</option>
-    <option value="Tops" selected>Tops</option>
-    <option value="Blouses">Blouses</option>
-    <option value="Sweaters">Sweaters</option>
-    <option value="Pants">Pants</option>
-    <option value="Dresses">Dresses</option>
-    <option value="Jackets">Jackets</option>
-    <option value="Shirts">Shirts</option>
-  </select>
-
-  <!--By Style-->
-
-  <select class="form-select bg-dark text-white me-1" aria-label="Default select example" style="width: 105px;">
-    <option selected>By Style</option>
-    <option value="Business">Business</option>
-    <option value="Casual">Casual</option>
-    <option value="Athletic">Athletic</option>
-    <option value="Formal">Formal</option>
-  </select>
+  <div class="row ms-5">
+    <select
+      class="form-select bg-dark text-white me-1"
+      aria-label="Default select example"
+      style="width: 105px"
+    >
+      <option>By Type</option>
+      <option value="Tops" selected>Tops</option>
+      <option value="Blouses">Blouses</option>
+      <option value="Sweaters">Sweaters</option>
+      <option value="Pants">Pants</option>
+      <option value="Dresses">Dresses</option>
+      <option value="Jackets">Jackets</option>
+      <option value="Shirts">Shirts</option>
+    </select>
 
     <!--By Style-->
 
-  <select class="form-select bg-dark text-white" aria-label="Default select example" style="width: 105px;">
-    <option selected>By Sex</option>
-    <option value="Men">Men</option>
-    <option value="Women">Women</option>
-    <option value="Unisex">Unisex</option>
-  </select>
+    <select
+      id="style"
+      class="form-select bg-dark text-white me-1 filter"
+      aria-label="Default select example"
+      style="width: 105px"
+    >
+      <option value="None" selected>By Style</option>
+      <option value="Business">Business</option>
+      <option value="Casual">Casual</option>
+      <option value="Athletic">Athletic</option>
+      <option value="Formal">Formal</option>
+    </select>
 
-</div>
+    <!--By Style-->
+
+    <select
+      id="sex"
+      class="form-select bg-dark text-white filter"
+      aria-label="Default select example"
+      style="width: 105px"
+    >
+      <option value="None" selected>By Sex</option>
+      <option value="Men">Men</option>
+      <option value="Women">Women</option>
+      <option value="Unisex">Unisex</option>
+    </select>
+  </div>
 
   <!--Items-->
   <div id="item_content" class="container mt-5">
@@ -67,24 +79,38 @@
   </div>
 </div>
 <script>
-  var main = $("a.tag").click(function(){
-    const urlParams = new URLSearchParams(window.location.search);
-    data = urlParams.get('q').split(" ");
-    if($(this).hasClass("type")){
-      data[0] = $(this).text();
-    } else if ($(this).hasClass("style")) {
-      data[1] = $(this).text();
-    } else if ($(this).hasClass("sex")) {
-      data[2] = $(this).text();
-    }
-    var url = "/products?q=";
+  const urlParams = new URLSearchParams(window.location.search);
+  data = urlParams.get("q").split(" ");
+  url = "/products?q=";
+  if (data != "") {
+    $("#type").val(data[0]);
+    $("#style").val(data[1]);
+    $("#sex").val(data[2]);
+  } else {
+    data = ["None", "None", "None"];
+  }
 
-    $.each(data, function(i, value){
+  $("#type").change(function () {
+    data[0] = $(this).val();
+    reloadPage();
+  });
+
+  $("#style").change(function () {
+    data[1] = $(this).val();
+    reloadPage();
+  });
+
+  $("#sex").change(function () {
+    data[2] = $(this).val();
+    reloadPage();
+  });
+
+  function reloadPage() {
+    $.each(data, function (i, value) {
       url = url + value + "+";
     });
     alert(url);
-
     window.location.replace(url);
-  });
+  }
 </script>
 {% endblock %}
