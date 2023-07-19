@@ -1,6 +1,60 @@
 {% extends "home/base.html" %} {% block content%} {%load static%}
+
+
+<div
+  class="bg-white mx-auto position-relative"
+  style="width: 1200px; height: 5000"
+>
 <h1>Search query returns:</h1>
-{% for i in products %}
-<p>{{i.product_name}}<br></p>
-{% endfor %}
+  <!--Items-->
+  <div id="item_content" class="container mt-5">
+    <div class="row row-cols-5">
+      {% for p in products %}
+      <div class="col mb-2">
+        <a class="nav-link" href="product/{{p.id}}">
+          <div class="card">
+            <img
+              src="{{p.product_image.url}}"
+              class="card-img-top"
+              alt="Product Image"
+            />
+            <div class="card-body">
+              <h5 class="card-title text-center">{{p.product_name}}</h5>
+              <div class="row justify-content-evenly">
+                <p class="card-text">₱{{p.price}}</p>
+                <p class="card-text text-truncate">{{p.description}}</p>
+                <p class="card-text text-secondary">{{p.sold}} Sold</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<script>
+  var main = $("a.tag").click(function(){
+    const urlParams = new URLSearchParams(window.location.search);
+    data = urlParams.get('q').split(" ");
+    if($(this).hasClass("type")){
+      data[0] = $(this).text();
+    } else if ($(this).hasClass("style")) {
+      data[1] = $(this).text();
+    } else if ($(this).hasClass("sex")) {
+      data[2] = $(this).text();
+    }
+    var url = "/products?q=";
+
+    $.each(data, function(i, value){
+      url = url + value + "+";
+    });
+    alert(url);
+
+    window.location.replace(url);
+  });
+</script>
 {% endblock %}
+
+
+

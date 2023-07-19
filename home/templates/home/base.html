@@ -84,11 +84,12 @@
           </li>
         </ul>
 
+        <!--Search bar-->
         <ul class="navbar-nav d-flex">
           <li class="nav-item">
             <div class="input-group">
-              <input type="search" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa fa-search"></i></button>
+              <input type="search" class="form-control" placeholder="Search" id="search">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="searchQuery()"><i class="fa fa-search"></i></button>
             </div>
           </li>
           <li class="nav-item">
@@ -129,5 +130,13 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      function searchQuery() {
+        query = document.getElementById("search").value;
+        urlQuery = query.replace(/ /g, "+")
+        location.replace("/search?q=" + urlQuery)
+      }
+    </script>
   </body>
 </html>
