@@ -7,11 +7,12 @@
   <!--By Type-->
   <div class="row ms-5">
     <select
+      id="type"
       class="form-select bg-dark text-white me-1"
       aria-label="Default select example"
       style="width: 105px"
     >
-      <option>By Type</option>
+      <option value="None">By Type</option>
       <option value="Tops" selected>Tops</option>
       <option value="Blouses">Blouses</option>
       <option value="Sweaters">Sweaters</option>
@@ -109,7 +110,6 @@
     $.each(data, function (i, value) {
       url = url + value + "+";
     });
-    alert(url);
     window.location.replace(url);
   }
 </script>
