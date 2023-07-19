@@ -1,60 +1,44 @@
 {% extends "home/base.html" %} {% block content%} {%load static%}
-<!--Put buttons-->
-<div class="row ms-5">
-  <div class="col-1">
-    <!--By Type-->
-    <div class="dropdown col">
-      <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        By type
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item type tag" href="#">None</a></li>
-        <li><a class="dropdown-item type tag" href="#">Tops</a></li>
-        <li><a class="dropdown-item type tag" href="#">Blouses</a></li>
-        <li><a class="dropdown-item type tag" href="#">Sweaters</a></li>
-        <li><a class="dropdown-item type tag" href="#">Pants</a></li>
-        <li><a class="dropdown-item type tag" href="#">Dresses</a></li>
-        <li><a class="dropdown-item type tag" href="#">Jackets</a></li>
-        <li><a class="dropdown-item type tag" href="#">Shirts</a></li>
-      </ul>
-    </div>
-  </div>
 
-  <div class="col-1 me-5">
-    <!--By Style-->
-    <div class="dropdown col">
-      <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        By style
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item style tag" href="#">None</a></li>
-        <li><a class="dropdown-item style tag" href="#">Business</a></li>
-        <li><a class="dropdown-item style tag" href="#">Casual</a></li>
-        <li><a class="dropdown-item style tag" href="#">Athletic</a></li>
-        <li><a class="dropdown-item style tag" href="#">Formal</a></li>
-      </ul>
-    </div>
-  </div>
 
-  <div class="col-1 ms-4">
-    <!--By Sex-->
-    <div class="dropdown col">
-      <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        By sex
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item sex tag" href="#">None</a></li>
-        <li><a class="dropdown-item sex tag" href="#">Men</a></li>
-        <li><a class="dropdown-item sex tag" href="#">Women</a></li>
-        <li><a class="dropdown-item sex tag" href="#">Unisex</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
 <div
   class="bg-white mx-auto position-relative"
   style="width: 1200px; height: 5000"
 >
+  <!--By Type-->
+<div class="row ms-5">
+  <select class="form-select bg-dark text-white me-1" aria-label="Default select example" style="width: 105px;">
+    <option selected>By Type</option>
+    <option value="Tops">Tops</option>
+    <option value="Blouses">Blouses</option>
+    <option value="Sweaters">Sweaters</option>
+    <option value="Pants">Pants</option>
+    <option value="Dresses">Dresses</option>
+    <option value="Jackets">Jackets</option>
+    <option value="Shirts">Shirts</option>
+  </select>
+
+  <!--By Style-->
+
+  <select class="form-select bg-dark text-white me-1" aria-label="Default select example" style="width: 105px;">
+    <option selected>By Style</option>
+    <option value="Business">Business</option>
+    <option value="Casual">Casual</option>
+    <option value="Athletic">Athletic</option>
+    <option value="Formal">Formal</option>
+  </select>
+
+    <!--By Style-->
+
+  <select class="form-select bg-dark text-white" aria-label="Default select example" style="width: 105px;">
+    <option selected>By Sex</option>
+    <option value="Men">Men</option>
+    <option value="Women">Women</option>
+    <option value="Unisex">Unisex</option>
+  </select>
+
+</div>
+
   <!--Items-->
   <div id="item_content" class="container mt-5">
     <div class="row row-cols-5">
