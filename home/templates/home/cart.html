@@ -4,13 +4,13 @@
 {% endblock %} {% block content %}
 <div
   class="bg-white mx-auto position-relative"
-  style="width: 1200px; height: 5000"
+  style="width: 1200px;"
 >
-  <div class="container" style="width: 1000px">
+  <div class="container" style="width: 1000px; padding-bottom: 42px">
     {% csrf_token %} {%for p in products%}
     <div class="row border mb-3">
       <!--Image-->
-      <div class="col-2">
+      <div class="col-2" style="padding: 0%">
         <image
           class="cart-img"
           src="{{p.product_id.product_image.url}}"
@@ -68,7 +68,7 @@
     <nav
       class="navbar navbar-expand-md bg-black fixed-bottom"
       data-bs-theme="dark"
-      style="margin: 0px 200px"
+      style="margin: 2000px 200px 0px"
     >
       <div class="container-fluid">
         <ul class="navbar-nav" data-bs-theme="dark">

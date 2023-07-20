@@ -6,20 +6,20 @@
   <div class="container">
     <div class="row">
       <!--Cart List-->
-      <div class="col-3">
+      <div class="col-4">
         <h1>Cart List</h1>
         <div class="row overflow-scroll border" style="height: 500px">
           {%for c in cart%}
           <div class="row border mb-1 g-0">
             <!--Image-->
-            <div class="col-md-4">
+            <div class="col">
               <image
                 class="cart-img"
                 src="{{c.product_id.product_image.url}}"
               ></image>
             </div>
             <!--Detail-->
-            <div class="col-md-8 mt-2">
+            <div class="col-7 mt-2">
               <h6 class="h6">{{c.product_id.product_name}}</h6>
               <div class="">
                 <p class="">₱{{c.product_id.price}}</p>
