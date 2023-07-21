@@ -59,15 +59,19 @@
           <button
             id="add_to_cart"
             type="button"
-            class="btn btn-dark btn-lg me-2"
+            class="btn btn-dark btn-lg me-2 {% if request.user.is_authenticated %}auth{% endif %}"
           >
             Add to Cart
           </button>
-          <button type="button" id="buy_now" class="btn btn-dark btn-lg">Buy Now</button>
+          <button type="button" id="buy_now" class="btn btn-dark btn-lg {% if request.user.is_authenticated %}auth{% endif %}">Buy Now</button>
         </div>
         <script>
           var main = function () {
             $("#add_to_cart").click(function () {
+              if(!$(this).hasClass('auth')){
+                window.location.replace('login');
+                return;
+              }
               var CSRFtoken = $("input[name=csrfmiddlewaretoken]").val();
               var product = $("input[name=product_id]").val();
               var data = $("input[name=quantity_input]").val();
@@ -80,6 +84,10 @@
             });
 
             $('#buy_now').click(function(){
+              if(!$(this).hasClass('auth')){
+                window.location.replace('/login');
+                return;
+              }
               var CSRFtoken = $("input[name=csrfmiddlewaretoken]").val();
               var product = $("input[name=product_id]").val();
               var data = $("input[name=quantity_input]").val();

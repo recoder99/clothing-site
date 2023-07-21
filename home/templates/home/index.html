@@ -3,13 +3,13 @@
   class="bg-white mx-auto position-relative"
   style="width: 1200px; padding-top: 10px"
 >
-  <h1 class="mb-3" style="font-family: Tahoma, sans-serif">
-    Welcome To Envy, Shopper!
+  <h1 class="mb-3 animate__animated animate__fadeIn" style="font-family: Tahoma, sans-serif">
+    Welcome To Envy, {% if request.user.is_authenticated %} {{request.user.first_name}} {{ request.user.last_name}} {%else%} Shopper! {%endif%}
   </h1>
   <div class="row">
     <div
       id="carouselExampleAutoplaying"
-      class="carousel slide col"
+      class="carousel slide col animate__animated animate__fadeInLeft"
       data-bs-ride="carousel"
       style="width: 500px"
     >
@@ -55,7 +55,7 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-    <div class="col">
+    <div class="col carousel slide col animate__animated animate__fadeInRight">
       <img
         src="{% static 'index/crypto_announcement.png' %}"
         class="d-block w-100"
@@ -71,7 +71,7 @@
         <p class="h2">Hot Products</p>
       </div>
       {% for p in products %}
-      <div class="col mb-2">
+      <div class="col mb-2 animate__animated animate__fadeInUp animate__delay-1s">
         <a class="nav-link" href="product/{{p.id}}">
           <div class="card">
             <img

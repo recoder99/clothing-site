@@ -29,13 +29,15 @@ def login_user(request):
         password = request.POST["password"]
 
         user = authenticate(request, username=username, password=password)
-        if User is not None:
+
+        if user is not None:
             if user.is_active:
                 request.session.set_expiry(86400)  # sets the exp. value of the session
                 login(request, user)
                 return redirect("/")
         else:
-            return redirect("/login")
+            return redirect("/login?q=none")
+            
     return render(request, "home/login.html")
 
 
@@ -62,7 +64,9 @@ def signup(request):
         user.last_name = last_name
         user.save()
         PersonalInformation.objects.create(user_id=user)
-        return redirect("/login")
+        user_login = authenticate(username=username, password=password1)
+        login(request, user_login)
+        return redirect("edit_information")
 
     return render(request, "home/signup.html")
 
