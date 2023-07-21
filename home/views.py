@@ -34,6 +34,8 @@ def login_user(request):
                 request.session.set_expiry(86400)  # sets the exp. value of the session
                 login(request, user)
                 return redirect("/")
+        else:
+            return redirect("/login")
     return render(request, "home/login.html")
 
 
