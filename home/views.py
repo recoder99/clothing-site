@@ -87,7 +87,7 @@ def add_to_cart(request):
     return HttpResponse("")
 
 
-@login_required
+@login_required(login_url="login")
 def cart(request):
     products = Cart.objects.filter(user_id=request.user, ordered=False)
     total = 0
@@ -111,6 +111,8 @@ def update_cart(request):
             cart_item.quantity += 1
             cart_item.save()
         elif data[0] == "dec":
+            if cart_item.quantity == 1:
+                return HttpResponse("")
             cart_item.quantity -= 1
             cart_item.save()
         elif data[0] == "rm":
@@ -120,7 +122,8 @@ def update_cart(request):
 
 @login_required(login_url="login")
 def information(request):
-
+    if request.user.is_superuser == True:
+        return redirect("/admin")
     return render(
         request,
         "home/information.html",
