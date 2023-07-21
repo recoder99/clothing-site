@@ -10,7 +10,7 @@
     {% csrf_token %} {%for p in order%}
     <div class="row border mb-3">
       <!--Image-->
-      <div class="col-2">
+      <div class="col-2" style="padding: 0%">
         <image
           class="cart-img"
           src="{{p.product_id.product_image.url}}"
@@ -22,44 +22,10 @@
         <div class="">
           <h4 class="">₱{{p.product_id.price}}</h4>
         </div>
-        <!--Quantity form buttons and input -->
-        <div class="row row-cols-lg-auto g-3 align-items-center mt-5">
-          <p class="col-12">Quantity:</p>
-          <button
-            type="button"
-            id="dec_{{p.id}}"
-            class="col-12 btn btn-outline-dark btn-sm mb-2 quantity-button increment"
-            style="padding-top: 1px; padding-bottom: 1px"
-          >
-            -
-          </button>
-          <input
-            type="text"
-            class="mb-2 mx-2 quantity_input"
-            id="{{p.id}}"
-            value="{{p.quantity}}"
-            style="width: 30px"
-          />
-
-          <button
-            type="button"
-            id="inc_{{p.id}}"
-            class="col-12 btn btn-outline-dark btn-sm mb-2 quantity-button decrement"
-            style="padding: 1px 7px"
-          >
-            +
-          </button>
-        </div>
       </div>
-      <div class="col-1">
-        <button
-          type="button"
-          id="rm_{{p.id}}"
-          class="btn btn-link link-underline link-underline-opacity-0 text-dark quantity-button"
-          style="margin: 70px 0 0 0"
-        >
-          <h4>X</h4>
-        </button>
+      <!--Put Quantity here-->
+      <div class="col-1" >
+        <p class="h5" style="margin: 82px 0 0 0 ">x{{p.quantity}}</p>
       </div>
     </div>
     {%endfor%}

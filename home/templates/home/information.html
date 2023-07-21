@@ -1,13 +1,13 @@
 {% extends "home/base.html" %} {%block content%} {%load static%}
 <div
   class="bg-white mx-auto position-relative"
-  style="width: 1200px; height: 5000"
+  style="width: 1200px; height: 640px;padding-top: 20px"
 >
   <div class="container">
     <div class="row">
       <!--Current information-->
+      <h1>Your Information</h1>
       <div class="card col-5">
-        <h1>Your Information</h1>
         <h5>Name: {{request.user.first_name}} {{request.user.last_name}}</h5>
         <h5>
           Address: {{info.address_1}}, {{info.city}}, {{info.province}},
@@ -27,7 +27,7 @@
     </div>
 
     <!--Order Status-->
-    <div class="row mt-2">
+    <div class="row mt-5">
       <div class="col">
         <p class="h2">Delivering</p>
         <div
