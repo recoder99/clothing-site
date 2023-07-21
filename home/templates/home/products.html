@@ -1,43 +1,53 @@
 {% extends "home/base.html" %} {% block content%} {%load static%}
 
-
 <div
   class="bg-white mx-auto position-relative"
-  style="width: 1200px; height: 5000"
+  style="width: 1200px; padding-top: 10px"
 >
   <!--By Type-->
-<div class="row ms-5">
-  <select class="form-select bg-dark text-white me-1" aria-label="Default select example" style="width: 105px;">
-    <option selected>By Type</option>
-    <option value="Tops">Tops</option>
-    <option value="Blouses">Blouses</option>
-    <option value="Sweaters">Sweaters</option>
-    <option value="Pants">Pants</option>
-    <option value="Dresses">Dresses</option>
-    <option value="Jackets">Jackets</option>
-    <option value="Shirts">Shirts</option>
-  </select>
-
-  <!--By Style-->
-
-  <select class="form-select bg-dark text-white me-1" aria-label="Default select example" style="width: 105px;">
-    <option selected>By Style</option>
-    <option value="Business">Business</option>
-    <option value="Casual">Casual</option>
-    <option value="Athletic">Athletic</option>
-    <option value="Formal">Formal</option>
-  </select>
+  <div class="row ms-5">
+    <select
+      class="form-select bg-dark text-white me-1"
+      aria-label="Default select example"
+      style="width: 105px"
+    >
+      <option selected>By Type</option>
+      <option value="Tops">Tops</option>
+      <option value="Blouses">Blouses</option>
+      <option value="Sweaters">Sweaters</option>
+      <option value="Pants">Pants</option>
+      <option value="Dresses">Dresses</option>
+      <option value="Jackets">Jackets</option>
+      <option value="Shirts">Shirts</option>
+    </select>
 
     <!--By Style-->
 
-  <select class="form-select bg-dark text-white" aria-label="Default select example" style="width: 105px;">
-    <option selected>By Sex</option>
-    <option value="Men">Men</option>
-    <option value="Women">Women</option>
-    <option value="Unisex">Unisex</option>
-  </select>
+    <select
+      class="form-select bg-dark text-white me-1"
+      aria-label="Default select example"
+      style="width: 105px"
+    >
+      <option selected>By Style</option>
+      <option value="Business">Business</option>
+      <option value="Casual">Casual</option>
+      <option value="Athletic">Athletic</option>
+      <option value="Formal">Formal</option>
+    </select>
 
-</div>
+    <!--By Style-->
+
+    <select
+      class="form-select bg-dark text-white"
+      aria-label="Default select example"
+      style="width: 105px"
+    >
+      <option selected>By Sex</option>
+      <option value="Men">Men</option>
+      <option value="Women">Women</option>
+      <option value="Unisex">Unisex</option>
+    </select>
+  </div>
 
   <!--Items-->
   <div id="item_content" class="container mt-5">
@@ -50,6 +60,7 @@
               src="{{p.product_image.url}}"
               class="card-img-top product-image"
               alt="Product Image"
+              style="width: 100%"
             />
             <div class="card-body">
               <h5 class="card-title text-center">{{p.product_name}}</h5>
@@ -66,11 +77,12 @@
     </div>
   </div>
 </div>
+
 <script>
-  var main = $("a.tag").click(function(){
+  var main = $("a.tag").click(function () {
     const urlParams = new URLSearchParams(window.location.search);
-    data = urlParams.get('q').split(" ");
-    if($(this).hasClass("type")){
+    data = urlParams.get("q").split(" ");
+    if ($(this).hasClass("type")) {
       data[0] = $(this).text();
     } else if ($(this).hasClass("style")) {
       data[1] = $(this).text();
@@ -79,7 +91,7 @@
     }
     var url = "/products?q=";
 
-    $.each(data, function(i, value){
+    $.each(data, function (i, value) {
       url = url + value + "+";
     });
     alert(url);

@@ -2,11 +2,8 @@
 <script src="{% static 'quantityChange.js' %}"></script>
 
 {% endblock %} {% block content %}
-<div
-  class="bg-white mx-auto position-relative"
-  style="width: 1200px;"
->
-  <div class="container" style="width: 1000px; padding-bottom: 42px">
+<div class="bg-white mx-auto position-relative" style="width: 1200px">
+  <div class="container-fluid" style="width: 1000px; padding-bottom: 42px">
     {% csrf_token %} {%for p in products%}
     <div class="row border mb-3">
       <!--Image-->
@@ -79,7 +76,13 @@
         <ul class="navbar-nav d-flex">
           <li>
             <form class="d-flex">
+              {% if products.count >= 1%}
               <a class="btn btn-outline-light" href="/checkout"> Check Out </a>
+              {% else %}
+              <a class="disabled btn btn-outline-light" href="/checkout">
+                Check Out
+              </a>
+              {% endif %}
             </form>
           </li>
         </ul>
