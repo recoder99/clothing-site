@@ -100,13 +100,14 @@
                 type="search"
                 class="form-control"
                 placeholder="Search"
-                aria-label="Recipient's username"
-                aria-describedby="button-addon2"
+                id="search"
+                onkeypress="handle(event)"
               />
               <button
                 class="btn btn-outline-secondary"
                 type="button"
                 id="button-addon2"
+                onclick="searchQuery()"
               >
                 <i class="fa fa-search"></i>
               </button>
@@ -154,8 +155,20 @@
     <script>
       function searchQuery() {
         query = document.getElementById("search").value;
-        urlQuery = query.replace(/ /g, "+")
-        location.replace("/search?q=" + urlQuery)
+        urlQuery = query.replace(/ /g, "+");
+        location.replace("/search?q=" + urlQuery);
+      }
+    </script>
+
+    <script>
+      function handle(e) {
+        if (e.keyCode === 13) {
+          e.preventDefault(); // Ensure it is only this code that runs
+
+          query = document.getElementById("search").value;
+          urlQuery = query.replace(/ /g, "+");
+          location.replace("/search?q=" + urlQuery);
+        }
       }
     </script>
   </body>
