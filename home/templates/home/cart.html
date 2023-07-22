@@ -4,7 +4,8 @@
 {% endblock %} {% block content %}
 <div class="bg-white mx-auto position-relative" style="width: 1200px">
   <div class="container-fluid" style="width: 1000px; padding-bottom: 42px">
-    {% csrf_token %} {%for p in products%}
+    {% csrf_token %}
+    {%for p in products%}
     <div class="row border mb-3">
       <!--Image-->
       <div class="col-2" style="padding: 0%">
@@ -61,6 +62,10 @@
     </div>
     {%endfor%}
 
+    {% if products.count < 1 %}
+    <h1 class="d-flex justify-content-center" style="padding: 270px 0">There is no item in your cart</h1>
+    {%endif%}
+
     <!--Buy out nav-->
     <nav
       class="navbar navbar-expand-md bg-black fixed-bottom"
@@ -76,7 +81,7 @@
         <ul class="navbar-nav d-flex">
           <li>
             <form class="d-flex">
-              {% if products.count >= 1%}
+              {% if products.count >= 1 %}
               <a class="btn btn-outline-light" href="/checkout"> Check Out </a>
               {% else %}
               <a class="disabled btn btn-outline-light" href="/checkout">
