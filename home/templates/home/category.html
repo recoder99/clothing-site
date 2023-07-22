@@ -1,0 +1,47 @@
+{% extends "home/base.html" %} {% block content%} {%load static%}
+<div
+  class="bg-white mx-auto position-relative"
+  style="width: 1200px; padding-top: 10px"
+>
+    <div class="w3-row">
+        <h1>By Type</h1>
+        <div class="w3-third row ">
+            <div class="col"><a href="/products?q=Tops+None+None"><img src={% static 'index/tops.png' %} style="width:100%"alt=""></a></div>
+            <div class="col"><a href="/products?q=Blouses+None+None"><img src={% static 'index/blouses.png' %} style="width:100%"alt=""></a></div>
+            <div class="col"><a href="/products?q=Sweaters+None+None"><img src={% static 'index/sweaters.png' %} style="width:100%"alt=""></a></div>
+        </div>
+
+        <div class="w3-third row ">
+            <div class="col"><a href="/products?q=Pants+None+None"><img src={% static 'index/pants.png' %} style="width:100%"alt=""></a></div>
+            <div class="col"><a href="/products?q=Dresses+None+None"><img src={% static 'index/dresses.png' %} style="width:100%"alt=""></a></div>
+            <div class="col"><a href="/products?q=Jackets+None+None"><img src={% static 'index/jackets.png' %} style="width:100%"alt=""></a></div>
+        </div>
+
+        <div class="w3-third row row-cols-3 ">
+            <div class="col"><a href="/products?q=Shirts+None+None"><img src={% static 'index/shirts.png' %} style="width:100%"alt=""></a></div>
+        </div>
+    </div>
+
+    <div class="w3-row">
+        <h1>By Style</h1>
+        <div class="w3-third row ">
+            <div class="col"><a href="/products?q=None+Business+None"><img src={% static 'index/business.png' %} style="width:100%"alt=""></a></div>
+            <div class="col"><a href="/products?q=None+Casual+None"><img src={% static 'index/casual.png' %} style="width:100%"alt=""></a></div>
+            <div class="col"><a href="/products?q=None+Athletics+None"><img src={% static 'index/athletic.png' %} style="width:100%"alt=""></a></div>
+        </div>
+
+        <div class="w3-third row row-cols-3">
+            <div class="col"><a href="/products?q=None+Formal+None"><img src={% static 'index/formal.png' %} style="width:100%"alt=""></a></div>
+        </div>
+    </div>
+
+    <div class="w3-row">
+        <h1>By Sex</h1>
+        <div class="w3-third row ">
+            <div class="col"><a href="/products?q=None+None+Men"><img src={% static 'index/men.png' %} style="width:100%"alt=""></a></div>
+            <div class="col"><a href="/products?q=None+None+Women"><img src={% static 'index/women.png' %} style="width:100%"alt=""></a></div>
+            <div class="col"><a href="/products?q=None+None+Unisex"><img src={% static 'index/unisex.png' %} style="width:100%"alt=""></a></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
