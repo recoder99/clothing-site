@@ -17,7 +17,11 @@ class CartAdmin(admin.ModelAdmin):
     model=Cart
     fields=['user_id', 'product_id', 'quantity', 'ordered']
 
+class OrderAdmin(admin.ModelAdmin):
+    fields=['user_id', 'delivered']
+
 admin.site.register(Product, ProductsAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Cart, CartAdmin)
 admin.site.register(PersonalInformation, UserInfoAdmin)
+admin.site.register(Orders, OrderAdmin)
