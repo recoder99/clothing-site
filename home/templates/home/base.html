@@ -9,9 +9,9 @@
     />
 
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
 
     {%block script%} {%endblock%}{% load static %}
     <link
@@ -64,6 +64,16 @@
         height: 200px;
         overflow: hidden;
       }
+
+      .w3-third img
+        {
+            margin: 10px;
+            opacity: 1;
+            cursor: pointer
+        }
+        .w3-third img:hover{
+            opacity: 0.8
+        }
     </style>
   </head>
   <body class="px-50">
@@ -90,7 +100,7 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Categories</a>
+            <a class="nav-link" href="/category">Categories</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/faq">FAQ</a>

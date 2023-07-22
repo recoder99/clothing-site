@@ -237,3 +237,6 @@ def search(request):
     for i in query:
         products = products.filter(product_name__icontains=i)
     return render(request, "home/search.html", {"products": products})
+
+def category(request):
+    return render(request, "home/category.html")
