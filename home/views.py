@@ -15,7 +15,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def homepage(request):
 
-    products = Product.objects.all()
+    products = Product.objects.all().order_by('-sold')[:5]
     return render(request, "home/index.html", {"products": products})
 
 
