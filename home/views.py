@@ -73,7 +73,8 @@ def signup(request):
 
 def product_page(request, id):
     product = get_object_or_404(Product, id=id)
-    return render(request, "home/product_page.html", {"product": product})
+    category = product.category_name.all()
+    return render(request, "home/product_page.html", {"product": product, "category": category})
 
 
 @login_required(login_url="login")

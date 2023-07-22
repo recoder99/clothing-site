@@ -23,7 +23,7 @@
         </div>
 
         <div class="row row-cols-lg-auto g-3 align-items-center mt-5">
-          <p class="col-12">Tags: clothes, stuff, yeah, right</p>
+          <p class="col-12">Tags: {% for t in category%} {{t.category_name}} {% endfor %}</p>
         </div>
 
         <div class="row row-cols-lg-auto g-3 align-items-center mt-5">
