@@ -11,7 +11,7 @@ Actual website: https://shopenvy.me/
 
 This website is created by:
 Nicholas Noly Dela Torre
-Roel Castro
+& Roel Castro
 
 The source code of this website is licensed under GPL 3.0
 
