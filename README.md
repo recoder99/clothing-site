@@ -6,7 +6,7 @@ A simple website created in HTML , CSS, Bootstrap, JavaScript as the front end t
 
 Note however that this repository only contains the source code of the website. It does not contain media files and must be added manually using the admin page.
 
-Actual website: https://shopenvy.me/
+Actual website: https://www.shopenvy.me/
 
 
 This website is created by:
